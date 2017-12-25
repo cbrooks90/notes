@@ -33,3 +33,9 @@ x^6 != 1 mod 13?
 x = 2, so 13 divides 8^2 + 1. Once we reduce, we get
 
 13 divides (-5)^2 + 1 = 26 but 13 != 26. So we need to descend.
+
+a^2 + b^2 = m*p.
+
+Proof by descent is clear to me in easy examples, for instance proving \sqrt{2} is irrational. In this case the descent was a little bit trickier for me.
+
+By lemma we can assume that no primes dividing m are a sum of squares. Assume m!=1. Then there is q|m, q<p such that q is not a sum of squares. Repeat the process: q | a^2 + b^2, so reduce a, b so a,b < q/2. This process can't repeat indefinitely (since we would get an infinite descending sequence of positive primes) so at some point we get m=1. But this means that there was a prime factor which was a sum of squares. So m must have been 1.
