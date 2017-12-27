@@ -9,7 +9,7 @@ Furthermore, this means y has an inverse and
 
 On the other hand, if -n = x^2 mod p for some x, p | x^2+n*1^2.
 
-I don't understand how the 4n thing leads to the same conditions as 1.1.
+I don't understand how the 4n thing leads to the same conditions as 1.1... ok now I get it. the moduli in n=1 and 2 already are multiples of 4, and we can change the p=1 mod 3 condition into p = 1, 4, 7, 10 mod 12. Except 4 and 10 are not coprime with 12 so we get p=1, 7 mod 12 and this agrees with Euler's conjecture about (-3/p). It seems like the 4 essentially comes from (-1/p) and is the smallest factor needed to write the conditions on p in a unified way for all n.
 
 ------------------------------------------------------
 
@@ -69,7 +69,15 @@ In other words, QR is equiv. to (p*/q) = 1 <=> (q/p) = 1.
 
 Let us now prove (p*/q) = 1 <=> p = +-b^2 mod 4q for some odd b.
 
-If (p*/q) = 1, exists x such that p* = x^2 mod q
-  If p = 1(4), p = x^2 mod q. q divides p-x^2. Does 4q?
-  If p = 3(4), p = -x^2 mod q.
+If (p*/q) = 1, exists x such that p* = x^2 mod q. If x is odd,
+let b = x, otherwise b = x+q. Then b is odd, b^2 = 1 mod 4, and
+p* = b^2 mod q.
+  If p = 1(4), p - b^2 = 0 mod 4, so p = b^2 mod 4q.
+  If p = 3(4), p + b^2 = 0 mod 4, so p = -b^2 mod 4q.
 
+Conversely, if there exists odd b such that
+p = +-b^2 mod 4q, then
+p = +-b^2 mod 4 and p = +-b^2 mod q.
+Since b is odd, b^2 = 1 mod 4 and -b^2 = 3 mod 4.
+Thus, if p = b^2 mod q, then p* = p and (p*/q) = 1.
+If p = -b^2 mod q, then p* = -p and again (p*/q) = 1.
