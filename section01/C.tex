@@ -11,6 +11,8 @@ On the other hand, if -n = x^2 mod p for some x, p | x^2+n*1^2.
 
 I don't understand how the 4n thing leads to the same conditions as 1.1.
 
+------------------------------------------------------
+
 As an aside, I wanted to come up with proofs I liked for (-1/p) and (2/p). These follow from Euler's criterion, which is proved like this:
 
   Take a != 0 in F_p, p prime and let g be a primitive element of F_p.
@@ -39,3 +41,35 @@ When n is prime, we can cancel k! and simplify to
 2^((n-1)/2) = (-1)^((n^2 - 1)/8) mod n which tells us (2/n) = 1 iff n = 1, 7 mod 8.
 
 For a=3, Serre's proof works almost exactly the same since if b is a primitive 12th root of unity, b^4-b^2+1=0 so b^2 + b^-2 = 1. Thus if x=(b + b^-1), x^2 = 3 and the proof procedes the same way.
+
+-------------------------------------------------
+
+For an odd prime p, define p* to be (-1)^((p-1)/2) p. So if p = 1 mod 4, p* = p. If p = 3 mod 4, p* = -p.
+
+Assume quadratic reciprocity, and consider (p*/q) for distinct primes p & q.
+
+If p = 1 mod 4, (p*/q) = (p/q), but QR says (p/q)(q/p) = (-1)^(int*(q-1)) = 1.
+  In other words, (p/q) and (q/p) are equal, so (p*/q) = (q/p).
+If p = 3 mod 4, (p*/q) = (-p/q) = (-1/q)(p/q). QR says
+  (p/q)(q/p) = (-1)^(odd * (q-1)/2)
+             = (-1/q)^odd
+             = (-1/q).
+  So (-p/q) = (p/q)(q/p)(p/q) by substitution
+            = (q/p). In both cases (p*/q) = (q/p).
+
+Conversely, assume (p*/q) = (q/p).
+Then (p/q)(q/p) = (p/q)(p*/q)
+                = (p/q)(p/q)(-1/q)^((p-1)/2)
+                = 1*((-1)^((q-1)/2))^((p-1)/2)
+                = (-1)^(((q-1)/2) * ((p-1)/2))
+which is the original statement of QR.
+
+We've proved QR <=> (p*/q) = (q/p).
+In other words, QR is equiv. to (p*/q) = 1 <=> (q/p) = 1.
+
+Let us now prove (p*/q) = 1 <=> p = +-b^2 mod 4q for some odd b.
+
+If (p*/q) = 1, exists x such that p* = x^2 mod q
+  If p = 1(4), p = x^2 mod q. q divides p-x^2. Does 4q?
+  If p = 3(4), p = -x^2 mod q.
+
