@@ -90,11 +90,11 @@ I think it takes this form to allow for both sides to be zero. Not exactly sure
 
 The main claim is that if D=0,1 mod 4 with D!=0, there is a homomorphism
 x:(Z/DZ)* -> {\pm 1} given by:
-  For [i] in (Z/DZ)*, we can assume i is odd since if i is even, gcd(i, D)=1 => D is odd, so [i] = [i+D], so replace i with i+D. Then x([i]) := (D/i).
+  For [i] in (Z/DZ)*, x([i]) := (D/i) if i a positive odd integer.
 
 First we show that the map is well-defined. We need the following lemma.
 
-Lemma: If k=0,1 mod 4 and i,j odd st i=j mod k, (k/i) = (k/j).
+Lemma: If k=0,1 mod 4 and i,j odd and positive st i=j mod k, then (k/i) = (k/j).
 Proof: If k = 1 mod 4,
           Case: k>0. (k-1)/2 is even, so QR and (i/k) = (j/k) yield
           (k/i) = (i/k) = (j/k) = (k/j).
@@ -121,7 +121,16 @@ Proof: If k = 1 mod 4,
              = (k/j).
        If k=0, the result is trivial, although we do not need this case.
 
+(NOTE: In order to make this more clean, this lemma should be put with proofs of the other Jacobi symbol properties)
+
 Continuing with well-definedness, suppose [i] = [j] in (Z/DZ)*, i and j odd. x([i]) = (D/i) and x([j]) = (D/j). (D/i) = (D/j) is a direct application of the lemma.
 
+Next we show that x is total; specifically, for every [i] in (Z/DZ)*, there is some odd positive j such that [j] = [i].
+  Case: i < 0. i+(-i)|D| and i+(-i+1)|D| are both nonnegative and are in the same class as [i]. If D is odd, they have opposite parity so choose the odd one. If D is even, i must be odd since gcd(i,D)=1, so either one works.
+  Case: i > 0. Do the same as the previous case but with candidates i+|D| and i+2|D|.
 
-This homomorphism is unique among those with x([p]) = (D/p) for odd primes not dividing D.
+The map x is a homomorphism since, assuming a,b odd, x([a][b]) = x([ab]) = (D/ab) = (D/a)*(D/b) = x([a])*x([b]) using a basic property of Jacobi symbols.
+
+With the same conditions (D=0,1 mod 4 with D!=0), suppose we have a possibly different homomorphism
+y:(Z/DZ)* -> {\pm 1}, subject to the constraint that for any positive odd prime p not dividing D we have
+  y([p]) = (D/p).
