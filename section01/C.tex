@@ -29,7 +29,7 @@ In particular, a=-1 yields (-1/p) = (-1)^((p-1)/2) = 1 iff p=1 mod 4.
 
 For a=2, we can use the simple proof in Serre if we know that an algebraic closure exists (or splitting field).
 
-Alternatively, fix an odd positive number n = 2k+1 and denote {i in N | 1\leq i\leq k} by [k].
+Alternatively, fix an positive odd number n = 2k+1 and denote {i in N | 1\leq i\leq k} by [k].
 Define f:[k]->[k] by f(i) = i/2 if i even, (n-i)/2 if i odd.
 f is surjective since if i\leq k/2, f(2i) = i (and 2i\leq k)
                       if i > k/2, f(n-2i) = i (and n-2i < n-k = k+1)
@@ -41,6 +41,8 @@ When n is prime, we can cancel k! and simplify to
 2^((n-1)/2) = (-1)^((n^2 - 1)/8) mod n which tells us (2/n) = 1 iff n = 1, 7 mod 8.
 
 For a=3, Serre's proof works almost exactly the same since if b is a primitive 12th root of unity, b^4-b^2+1=0 so b^2 + b^-2 = 1. Thus if x=(b + b^-1), x^2 = 3 and the proof procedes the same way.
+
+It looks like there are some group theoretic methods which are similar to Serre's method but without using splitting fields. Look into this more.
 
 -------------------------------------------------
 
@@ -88,13 +90,15 @@ QR for the Jacobi symbol can be written
   (n/m) = (-1)^((n-1)/2 * (m-1)/2) (m/n).
 I think it takes this form to allow for both sides to be zero. Not exactly sure
 
-The main claim is that if D=0,1 mod 4 with D!=0, there is a homomorphism
-x:(Z/DZ)* -> {\pm 1} given by:
-  For [i] in (Z/DZ)*, x([i]) := (D/i) if i a positive odd integer.
+In the following, we fix a nonzero integer D which is either 0 or 1 mod 4.
+
+Define a map
+x:(Z/DZ)* -> {\pm 1} by this rule:
+  For [i] in (Z/DZ)*, x([i]) := (D/i) if i is a positive odd integer.
 
 First we show that the map is well-defined. We need the following lemma.
 
-Lemma: If k=0,1 mod 4 and i,j odd and positive st i=j mod k, then (k/i) = (k/j).
+Lemma: If k=0,1 mod 4 and i,j are positive odd integers st i=j mod k, then (k/i) = (k/j).
 Proof: If k = 1 mod 4,
           Case: k>0. (k-1)/2 is even, so QR and (i/k) = (j/k) yield
           (k/i) = (i/k) = (j/k) = (k/j).
@@ -125,12 +129,22 @@ Proof: If k = 1 mod 4,
 
 Continuing with well-definedness, suppose [i] = [j] in (Z/DZ)*, i and j odd. x([i]) = (D/i) and x([j]) = (D/j). (D/i) = (D/j) is a direct application of the lemma.
 
-Next we show that x is total; specifically, for every [i] in (Z/DZ)*, there is some odd positive j such that [j] = [i].
-  Case: i < 0. i+(-i)|D| and i+(-i+1)|D| are both nonnegative and are in the same class as [i]. If D is odd, they have opposite parity so choose the odd one. If D is even, i must be odd since gcd(i,D)=1, so either one works.
+Next we show that x is total; specifically, for every [i] in (Z/DZ)*, there is some positive odd j such that [j] = [i].
+  Case: i < 0. i+(-i)|D| and i+(-i+1)|D| are both nonnegative and are in the same class as [i]. If D is odd, they have opposite parity so let j be the odd one. If D is even, i must be odd since gcd(i,D)=1, so j can be either one.
   Case: i > 0. Do the same as the previous case but with candidates i+|D| and i+2|D|.
 
 The map x is a homomorphism since, assuming a,b odd, x([a][b]) = x([ab]) = (D/ab) = (D/a)*(D/b) = x([a])*x([b]) using a basic property of Jacobi symbols.
 
-With the same conditions (D=0,1 mod 4 with D!=0), suppose we have a possibly different homomorphism
+Now suppose we have a (possibly different) homomorphism
 y:(Z/DZ)* -> {\pm 1}, subject to the constraint that for any positive odd prime p not dividing D we have
   y([p]) = (D/p).
+
+For any [i] in (Z/DZ)*, we showed that there is a positive odd integer j such that [i] = [j]. This means we can write j=p_1^{a_1}\cdot\ldots\cdot p_n^{a_n} where each p_i is a positive odd prime.
+
+Then y([j]) = y([p_1^{a_1}\cdot\ldots\cdot p_n^{a_n}])
+            = y([p_1])^{a_1}\cdot\ldots\cdot y([p_n])^{a_n}
+            = (D/p_1)^{a_1}\cdot\ldots\cdot (D/p_n)^{a_n}
+            = (D/p_1^{a_1}\cdot\ldots\cdot p_n^{a_n})
+            = (D/j) = x([j]).
+
+Thus x is the \emph{unique} homomorphism (Z/DZ)* -> {\pm 1} such that x([p]) = (D/p) for positive odd primes p, p not | D.
