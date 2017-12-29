@@ -17,11 +17,59 @@ Reflexivity via the identity matrix, symmetric via inverse matrix, transitivity 
 
 This may be useful: If f(x,y) = g(px+qy,rx+sy), then f((sx-qy)/(ps-qr), (-rx+py)/(ps-qr)) = g(x,y).
 
-Equivalent forms represent the same numbers. Suppose f ~ g and exist a,b such that m=f(a,b). Then m=g(pa+qb, ra+sb) and vice versa (using the inverse).
+In fact, we can explicitly write the coefficients of g in this case. If f(x,y)=ax^2+bxy+cy^2, then
+  g(px+qy, rx+sy) = f(x,y), or equivalently
+  g(x,y) = f((sx-qy)/D, (-rx+py)/D) (D is the discriminant)
+  g(x,y) = (as^2-brs+cr^2)x^2
+           + (b(ps+qr)-2aqs-2cpr)xy
+           + (aq^2-bpq+cp^2)y^2 (since D^2=1).
 
-Is it possible to get an improper representation of m from a proper one? If m=f(a,b), gcd(a,b)=1, then m=g(pa+qb, ra+sb). gcd(pa+qb, ra+sb) = ... I don't know how to do this.
+Equivalent forms represent the same numbers. Suppose f ~ g and exist a,b such that m=f(a,b). Then m=g(pa+qb, ra+sb) and vice versa (using the inverse). A proper representation is one such that m=f(a,b) and gcd(a,b)=1; A representation is improper if gcd(a,b)>1.
 
-Suppose f(x,y)=ax^2+bxy+cy^2 has discriminant D. Then g(px+qy, rx+sy) = f(x,y)
-  = d(px+qy)^2 + e(px+qy)(rx+sy) + f(rx+sy)^2
-  = x^2(dp^2 + epr + fr^2) + xy(2pqd + eps + eqr + 2rsf) + y^2(dq^2 + eqs + fs^2)
-with determinant
+Is it possible to get an improper representation from a proper one? No. Suppose f ~ g via integers p,q,r,s with pq-rs=+-1, and that m = g(pa+qb, ra+sb) = f(a,b) with gcd(a,b)=1. We will show that gcd(pa+qb, ra+sb)=1.
+
+We have s(pa+qb)-q(ra+sb)=+-a and
+       -r(pa+qb)+p(ra+sb)=+-b.
+Since gcd(a,b)=1, there are integers n,m such that n(+-a)+m(+-b)=1, where the signs match the equations we just wrote. Then after substituting,
+        n(s(pa+qb)-q(ra+sb)) + m(-r(pa+qb)+p(ra+sb)) = 1,
+which can be rearranged to
+        (ns-mr)(pa+qb) + (mp-nq)(ra+sb) = 1.
+This is only possible if gcd(pa+qb, ra+sb)=1.
+
+Since this argument is the same with the inverse transformation, we have that the set of integers properly represented by f is an equivalence invariant.
+
+Another such invariant is the discriminant.
+
+Suppose f(x,y)=ax^2+bxy+cy^2 has discriminant D = b^2-4ac. Then if g ~ f via p,q,r,s, as shown above we can write
+  g(x,y) = (as^2-brs+cr^2)x^2
+           + (b(ps+qr)-2aqs-2cpr)xy
+           + (aq^2-bpq+cp^2)y^2
+which has discriminant
+D'=(b(ps+qr)-2(aqs+cpr))^2 - 4(as^2-brs+cr^2)(aq^2-bpq+cp^2).
+  = (bqr)^2 + (bps)^2 + 2b^2pqrs
+     + 4(aqs)^2 + 4(cpr)^2 + 8acpqrs
+     - 4abrsq^2 - 4bcrsp^2 - 4abpqs^2 -4bcpqr^2
+
+     -4(aqs)^2 - 4b^2pqrs - 4(cpr)^2
+      + 4abpqs^2 + 4abq^2rs
+      - 4acp^2s^2 - 4acq^2r^2
+      + 4bcp^2rs + 4bcpqr^2
+
+Combining,
+D' = (bps)^2 + (bqr)^2 + 2b^2pqrs - 4b^2pqrs
+      + 4(aqs)^2 - 4(aqs)^2
+      + 4(cpr)^2 - 4(cpr)^2
+      - 4abpqs^2 + 4abpqs^2
+      - 4bcpqr^2 + 4bcpqr^2
+      - 4abq^2rs + 4abq^2rs
+      - 4bcp^2rs + 4bcp^2rs
+      + 8acpqrs
+      - 4acp^2s^2
+      - 4acq^2r^2
+   = (bps)^2 + (bqr)^2 - 2b^2pqrs
+      + 8acpqrs - 4acp^2s^2 - 4acq^2r^2
+   = b^2((ps)^2 + (qr)^2 - 2pqrs)
+      - 4ac((ps)^2 + (qr)^2 - 2pqrs)
+   = (b^2 - 4ac)((ps)^2 + (qr)^2 - 2pqrs)
+   = (b^2 - 4ac)(ps - qr)^2
+   = D(ps - qr)^2 = D.
