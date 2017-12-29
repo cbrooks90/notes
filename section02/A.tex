@@ -1,0 +1,27 @@
+f(x,y) = ax^2 + bxy + cy^2
+
+Primitive means gcd(a,b,c)=1
+m is represented by f(x,y) means
+  m=f(x,y) for integers x,y
+m is properly represented if gcd(x,y)=1.
+
+f(x,y) and g(x,y) are equivalent if there exist
+p,q,r,s such that
+ - f(x,y) = g(px+qy,rx+sy)
+ - ps-qr = +-1
+
+This means the matrix (p q, r s) is in GL(2,Z).
+Equivalence of forms is an equivalence relation:
+
+Reflexivity via the identity matrix, symmetric via inverse matrix, transitivity via matrix product. These work because det(id) = 1, det(A^-1) = det(A) if det(A) = +-1, and det(AB)=det(A)det(B).
+
+This may be useful: If f(x,y) = g(px+qy,rx+sy), then f((sx-qy)/(ps-qr), (-rx+py)/(ps-qr)) = g(x,y).
+
+Equivalent forms represent the same numbers. Suppose f ~ g and exist a,b such that m=f(a,b). Then m=g(pa+qb, ra+sb) and vice versa (using the inverse).
+
+Is it possible to get an improper representation of m from a proper one? If m=f(a,b), gcd(a,b)=1, then m=g(pa+qb, ra+sb). gcd(pa+qb, ra+sb) = ... I don't know how to do this.
+
+Suppose f(x,y)=ax^2+bxy+cy^2 has discriminant D. Then g(px+qy, rx+sy) = f(x,y)
+  = d(px+qy)^2 + e(px+qy)(rx+sy) + f(rx+sy)^2
+  = x^2(dp^2 + epr + fr^2) + xy(2pqd + eps + eqr + 2rsf) + y^2(dq^2 + eqs + fs^2)
+with determinant
