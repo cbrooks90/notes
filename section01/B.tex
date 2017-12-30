@@ -1,41 +1,49 @@
-Here are some examples of the ``Reciprocity'' and ``Descent'' steps for the x^2 + y^2 problem. Specifically, I would like clarify why all parts of the two steps are necessary.
+\documentclass[b5paper,12pt,oneside,openright]{memoir}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{color}
 
-Take p = 5.
+\setlength{\uppermargin}{22mm}
+\setlength{\spinemargin}{22mm}
+\setlength{\textheight}{206mm}
+\setlength{\textwidth}{132mm}
+\setlength{\oddsidemargin}{0mm}
+\fixthelayout
 
-Then x^4 - 1 = 0 mod 5 for all x != 0.
+\begin{document}
+\section{Descent is necessary}
+Here are some concrete calculations which follow the proof of the reciprocity step. Take $p = 5$. Then $x^4 - 1 = 0 \mod 5$ for all $x \neq 0$. $x^4 - 1 = (x^2 + 1)(x^2 - 1) = 0$. At this point we need to find $n$ such that $n^2 - 1 \neq 0 \mod 5$, so take $n = 2$ or 3.
 
-x^4 - 1 = (x^2 + 1)(x^2 - 1) = 0.
+\begin{align*}
+n = 2 &\implies 5\mid 2^2 + 1\\
+n = 3 &\implies 5\mid 3^2 + 1\\
+\end{align*}
 
-Can we find x such that x^2 - 1 != 0 mod 5? Sure, x = 2 or 3.
+In the second case we might need to use descent. However, $3 > p/2$ so we replace 3 with $-2$ and we're done. Is this always the case? In other words, do we ever get a case where $a < p/2$ and $b = 1$ but $p \neq a^2 + b^2$?
 
-x = 2 => 4 + 1 is divisible by 5.
+Most likely---I think I just chose $p$ too small. After reducing, \[a^2 + 1 < p^2/4 + 1.\] Can $p$ divide this properly? Let's try:
 
-x = 3 => 9 + 1 is divisible by 5.
+\begin{align*}
+p^2/4 + 1 &> 2p\\
+p^2 + 4 &> 8p\\
+\end{align*}
 
-In the second case we need to use descent.
+$p = 13$ satisfies the last inequality. Starting over, $x^{12} - 1 = (x^6 + 1)(x^6 - 1) = 0$ for $x \neq 0$. Let's find $n$ such that $n^6 \neq 1 \mod 13$. $n = 2$ works, so $13\mid 8^2 + 1$.
 
-Once we reduce 9 mod 5 we're done. Is this always the case?
+After reducing, we get $13 \mid (-5)^2 + 1$ but $13 \neq 26$ and descent is necessary in this case. At some point I will write an implementation of the descent step using the formulas in the book, but for now let's consider the proof.
 
-No: 5 divides 3^2 + 4^2.
+\section{Proof of the descent step}
 
-Do we ever get a case where a < p/2 and b = 1 but p != a^2 + b^2?
+Proof by descent is clear to me in easy examples, for instance when proving $\sqrt{2}$ is irrational. In the proof of the descent step for $x^2+y^2 = p$, the contradiction was a little bit trickier for me, hence the ensuing verbosity.
 
-a^2 + 1 < p^2/4 + 1. Can p divide this without equaling?
+Suppose $a^2 + b^2 = m\cdot p$ for an odd prime $p$, $\gcd(a, b)=1$.
 
-p^2/4 + 1 > 2p
-p^2 + 4 > 8p
-Take p = 13
+The first step is to remove from both sides all prime factors of $m$ which can be written as a sum of squares. Lemma 1.4 tells us that we will still be left with a sum of squares on the left side. Let's write this as $a_1^2+b_1^2=m_1\cdot p$; we know $m_1<m$ has no prime factors expressible as a sum of squares.
 
-x^12 - 1 = (x^6 + 1)(x^6 - 1) = 0 for x != 0.
+Now we make the assumption which will lead to a contradiction: Assume there is a prime $q_1$ dividing $m_1$. $q_1$ cannot be written as a sum of squares and $q_1<p$ because $a^2+b^2<p^2/4$ and $a_1^2+b_1^2<a^2+b^2$.
 
-x^6 != 1 mod 13?
+At this point we start the process again: $q_1\mid a_1^2+b_1^2$. Reduce $a_1$ and $b_1$ modulo $q_1$, so that $a_2<q_1/2$, $b_2<q_1/2$ and $a_2^2+b_2^2 = m_2\cdot q_1$. $m_2$ must have a prime factor since $q_1$ cannot be written as a sum of squares. Choose a prime $q_2$ dividing $m_2$; we have $q_2<q_1$ and we repeat.
 
-x = 2, so 13 divides 8^2 + 1. Once we reduce, we get
+Continuing in this way gives us an infinte descending sequence of positive primes, so our assumption that we could choose a prime factor $q_1$ of $m_1$ was flawed. $m_1$ must be 1, so in fact $p=a_1^2+b_1^2$.
 
-13 divides (-5)^2 + 1 = 26 but 13 != 26. So we need to descend.
-
-a^2 + b^2 = m*p.
-
-Proof by descent is clear to me in easy examples, for instance proving \sqrt{2} is irrational. In this case the descent was a little bit trickier for me.
-
-By lemma we can assume that no primes dividing m are a sum of squares. Assume m!=1. Then there is q|m, q<p such that q is not a sum of squares. Repeat the process: q | a^2 + b^2, so reduce a, b so a,b < q/2. This process can't repeat indefinitely (since we would get an infinite descending sequence of positive primes) so at some point we get m=1. But this means that there was a prime factor which was a sum of squares. So m must have been 1.
+\end{document}
