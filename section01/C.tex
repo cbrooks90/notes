@@ -10,206 +10,233 @@
 \setlength{\oddsidemargin}{0mm}
 \fixthelayout
 
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\jacobi}[2]{\left(\frac{#1}{#2}\right)}
+
 \begin{document}
 \section{The relation between $p\mid x^2+ny^2$ and quadratic reciprocity}
-Suppose $p \mid x^2 + ny^2$ or equivalently $x^2 + ny^2 = kp$ for some $k$. Assume there is a common divisor of $y$ and $p$ which is prime; call it $q$.
-Then $q\mid x^2$ which implies $q\mid x$, i.e. $q$ is a common divisor of $x$ and $y$.
+Suppose $x^2 + ny^2 = kp$ for some $k$. Assume there is a common divisor of $y$ and $p$ which is prime; since $p$ is prime, it must be $p$.
+Then $p\mid x^2$ which implies $p\mid x$, i.e. $p$ is a common divisor of $x$ and $y$.
 This tells us $\gcd(x,y)=1 \implies \gcd(y,p)=1$.
 
-Thus, if $\gcd(x,y)=1$, $y$ has an inverse \mod $p$ and
+In particular, $\gcd(x,y)=1\implies y$ is invertible modulo $p$ and
+\[(xy^{-1})^2\equiv -n\bmod p,\]
+so $-n$ is a quadratic residue modulo $p$.
 
-\[(xy^{-1})^2 = -n \mod p,\] so $-n$ is a quadratic residue \mod $p$.
+On the other hand, if $-n\equiv x^2\bmod p$ for some $x$, $p \mid x^2+n\cdot 1^2$ (and $\gcd(x,1)=1$). This proves
+\[\jacobi{-n}{p}=1 \iff p\mid x^2+ny^2,\ \gcd(x,y)=1.\]
 
-On the other hand, if $-n = x^2 \mod p$ for some $x$, $p \mid x^2+n\cdot 1^2$ (and $\gcd(x,1)=1$). This proves $(\frac{-n}{p})=1 \iff p\mid x^2+ny^2$ and $\gcd(x,y)=1$.
+Consider the conditions on $p$ in 1.1: The moduli for $n=1$ and 2 are already multiples of 4, and $p\equiv1\bmod 3$ is equivalent to $p\equiv 1, 4, 7, 10\bmod 12$. We know 4 and 10 are not coprime with 12 so we get $p\equiv 1, 7\bmod 12$ (and this agrees with Euler's conjecture about $(-3/p)$). It seems like the 4 essentially comes from $(-1/p)$ and is the smallest factor needed to write the conditions on $p$ in a unified way for all $n$.
 
-Consider the conditions on $p$ in 1.1: The moduli for $n=1$ and 2 already are multiples of 4, and $p=1 \mod 3$ is equivalent to $p = 1, 4, 7, 10 \mod 12$. We know 4 and 10 are not coprime with 12 so we get $p=1, 7 \mod 12$ (and this agrees with Euler's conjecture about $(\frac{-3}{p})$). It seems like the 4 essentially comes from $(\frac{-1}{p})$ and is the smallest factor needed to write the conditions on $p$ in a unified way for all $n$.
+\section{Computing $\jacobi{-1}{p}$ and $\jacobi{2}{p}$}
 
-\section{Computing $\left(\frac{-1}{p}\right)$ and $\left(\frac{2}{p}\right)$}
+I took a small break to prove the formulas for $(-1/p)$ and $(2/p)$. These follow from Euler's criterion, which is proved like this:
 
-As an aside from the main text, I wanted to find proofs I like for $(\frac{-1}{p})$ and $(\frac{2}{p})$. These follow from Euler's criterion, which is proved like this:
+Take $a \neq 0$ in $\mathbf{F}_p$ and let $g$ be a primitive element of $\mathbf{F}_p$. Suppose $(a/p) = 1$, then $a = g^{2i}$ for some $i$.
+\[a^\frac{p-1}{2} = (g^{2i})^\frac{p-1}{2} = (g^{p-1})^i = 1.\]
 
-  Take $a \neq 0$ in $\mathbf{F_p}$, $p$ prime and let $g$ be a primitive element of $\mathbf{F}_p$.
-
-  If $(\frac{a}{p}) = 1$, then $a = g^{2i}$ for some $i$. $a^\frac{p-1}{2} = (g^{2i})^(\frac{p-1}{2}) = (g^{p-1})^i = 1$.
-
-  Conversely, suppose $a^\frac{p-1}{2} = 1$ and take $j$ such that $a = g^j$.
-  Then $g^{j\cdot\frac{p-1}{2}} = 1$ which forces $j$ to be even. Then $a = g^{2i} = (g^i)^2$ for some $i$, so $(\frac{a}{p}) = 1$.
-
-  The cases $(\frac{a}{p}) = -1 or 0$ are immediate. Thus $(\frac{a}{p}) = a^\frac{p-1}{2}$.
-
-In particular, $a=-1$ yields
-\[\left(\frac{-1}{p}\right) = (-1)^\frac{p-1}{2} =
+Conversely, suppose $a^\frac{p-1}{2} = 1$ and take $j$ such that $a = g^j$. Then $g^{j\cdot\frac{p-1}{2}} = 1$, but the order of $g$ is $p-1$, so
+\[\exists k,\ k(p-1)=j\cdot\frac{p-1}{2}\implies 2k=j.\]
+Then $a = g^{2k} = (g^k)^2$ and $(a/p) = 1$. The cases $(a/p) = -1$ or 0 are immediate, which proves $(a/p) = a^\frac{p-1}{2}$. In particular, $a=-1$ yields
+\[\jacobi{-1}{p} = (-1)^\frac{p-1}{2} =
   \begin{cases}
-     1 &\quad p=1 \mod 4\\
-    -1 &\quad p=3 \mod 4.
+     1 &\quad p\equiv 1\bmod 4\\
+    -1 &\quad p\equiv 3\bmod 4.
   \end{cases}
 \]
 
-For $a=2$, we can use the simple proof in Serre if we know that an algebraic closure (or splitting field) exists.
+For $a=2$, we can use the simple proof in Serre if we know that an algebraic closure (or splitting field) exists. For $a=3$, Serre's proof works almost exactly the same since if $\beta$ is a primitive 12th root of unity, $\beta^4-\beta^2+1=0$ so $\beta^2 + \beta^{-2} = 1$. Thus if $x=\beta + \beta^{-1}$, $x^2 = 3$ and the proof procedes the same way.
 
-Here is a nice elementary proof: Fix an positive odd number $n = 2k+1$ and denote $\{i\in\mathbf{N} : 1\leq i\leq k}$ by $[k]$.
-Define $f:[k]->[k]$ by
+Here is an elementary proof for $a=2$: Fix a positive odd number $n = 2k+1$ and denote $\{i\in\mathbf{N} : 1\leq i\leq k\}$ by $[k]$.
+Define $f:[k]\to[k]$ by
 \[f(i) =
   \begin{cases}
-    i/2 &\quad i\textrm{ even}\\
-    (n-i)/2 &\quad i\textrm{ odd}.
+    \frac{i}{2} &i\textrm{ even}\\
+    \frac{n-i}{2} &i\textrm{ odd}.
   \end{cases}
 \]
-
 $f$ is surjective since
-\[\begin{cases}
-    i\leq k/2 &\implies 2i\leq k\textrm{ and }f(2i) = i\\
-    i > k/2 &\implies n-2i < n-k = k+1\textrm{ and }f(n-2i) = i.
-  \end{cases}
-\]
+\begin{align*}
+  i\leq k/2 &\implies 2i\leq k\textrm{ and }f(2i) = i\\
+  i > k/2 &\implies n-2i < n-k = k+1\textrm{ and }f(n-2i) = i.
+\end{align*}
 Since the domain and codomain are equal, $f$ is a bijection. Thus,
-\[\prod_{i=1}^k f(i) = k!\quad\implies\quad\prod_{i=1}^k (-1)^i 2f(i)) = (-1)^\frac{k^2 + k}{2} 2^k k!.\]
-Finally, $(-1)^i 2f(i) = i \mod n$, so
-\[(-1)^\frac{k^2 + k}{2} 2^k k! = k! \mod n.\]
-When $n$ is prime, we can cancel $k!$ and simplify to
-\[2^\frac{n-1}{2} = (-1)^\frac{n^2 - 1}{8} \mod n\]
+\[\prod_{i=1}^k f(i) = k!\quad\implies\quad\prod_{i=1}^k (-1)^i\cdot 2\cdot f(i) = (-1)^\frac{k^2 + k}{2}\cdot 2^k\cdot k!.\]
+Finally, $(-1)^i\cdot 2\cdot f(i)\equiv i\bmod n$, so
+\[(-1)^\frac{k^2 + k}{2}\cdot 2^k\cdot k!\equiv k!\bmod n.\]
+When $n$ is prime, we can cancel $k!$ and substitute $k=\frac{n-1}{2}$ to get
+\[2^\frac{n-1}{2}\equiv (-1)^\frac{n^2 - 1}{8}\bmod n\]
 which proves
 \[\left(\frac{2}{n}\right) =
   \begin{cases}
-     1 &\quad p=\pm 1 \mod 8\\
-    -1 &\quad p=\pm 3 \mod 3.
+     1 &\quad n\equiv\pm 1\bmod 8\\
+    -1 &\quad n\equiv\pm 3\bmod 8.
   \end{cases}
 \]
 
-For $a=3$, Serre's proof works almost exactly the same since if $b$ is a primitive 12th root of unity: $b^4-b^2+1=0$ so $b^2 + b^{-2} = 1$. Thus if $x=b + b^{-1}$, $x^2 = 3$ and the proof procedes the same way.
-
 It looks like there are some group theoretic methods which are similar to Serre's method but without using splitting fields. Look into this more.
 
-\section{Conditions equivalent to quadratic reciprocity}
+\section{$\jacobi{p^*}{q}=\jacobi{q}{p}\iff \jacobi{p}{q}\jacobi{q}{p}=(-1)^{(p-1)(q-1)/4}$}
 
-For an odd prime $p$, define $p^*$ to be $(-1)^\frac{p-1}{2} p$. So if $p = 1 \mod 4$, $p^* = p$. If $p = 3 \mod 4$, $p^* = -p$.
+For an odd prime $p$, define $p^*$ to be $(-1)^\frac{p-1}{2} p$. In other words,
+\[p^*=
+\begin{cases}
+  p&p\equiv 1\bmod 4\\
+  -p&p\equiv 3\bmod 4.\\
+\end{cases}
+\]
 
-Assume quadratic reciprocity, and consider $(\frac{p^*}{q})$ for distinct primes $p$ \& $q$.
+Assume quadratic reciprocity, and consider $(p^*/q)$ for distinct primes $p, q$. If $p\equiv 1\bmod 4$,
+\[\jacobi{p^*}{q} = \jacobi{p}{q} = (-1)^{(q-1)\cdot\frac{(p-1)}{4}} = \jacobi{q}{p}.\]
+If $p\equiv 3\bmod 4$,
+\begin{align*}
+  \jacobi{p^*}{q} &= \jacobi{-p}{q}\\
+                  &= \jacobi{-1}{q}\jacobi{p}{q}\\
+                  &= \jacobi{-1}{q}(-1)^{\frac{q-1}{2}\cdot\frac{p-1}{2}}\jacobi{q}{p}\\
+                  &= \jacobi{-1}{q}\jacobi{-1}{q}^\frac{p-1}{2}\jacobi{q}{p}\\
+                  &= \jacobi{-1}{q}^{1+\frac{p-1}{2}}\jacobi{q}{p} = \jacobi{q}{p}
+\end{align*}
+since $1+\frac{p-1}{2}$ is even when $p\equiv 3\bmod 4$. In both cases $(p^*/q)=(q/p)$.
 
-If $p = 1 \mod 4$, $(\frac{p^*}{q}) = (\frac{p}{q})$, but quadratic reciprocity says $(\frac{p}{q})(\frac{q}{p}) = (-1)^(int*(q-1)) = 1$.
-  In other words, $(\frac{p}{q})$ and $(\frac{q}{p})$ are equal, so $(\frac{p^*}{q}) = (\frac{q}{p})$.
-If $p = 3 \mod 4$, $(\frac{p^*}{q}) = (\frac{-p}{q}) = (\frac{-1}{q})(\frac{p}{q})$. Quadratic reciprocity says
-  $(\frac{p}{q})(\frac{q}{p}) = (-1)^(odd * (q-1)/2)
-             = (\frac{-1}{q})^odd
-             = (\frac{-1}{q})$.
-  So $(\frac{-p}{q}) = (\frac{p}{q})(\frac{q}{p})(\frac{p}{q})$ by substitution
-            $= (\frac{q}{p})$. In both cases $(\frac{p^*}{q}) = (\frac{q}{p})$.
+Conversely, assume $(p^*/q) = (q/p)$. Then
+\begin{align*}
+  \jacobi{p}{q}\jacobi{q}{p} &= \jacobi{p}{q}\jacobi{p^*}{q}\\
+                             &= \jacobi{p}{q}\jacobi{p}{q}\jacobi{-1}{q}^\frac{p-1}{2}\\
+                             &= 1\cdot\jacobi{-1}{q}^\frac{p-1}{2}\\
+                             &= \left((-1)^\frac{q-1}{2}\right)^\frac{p-1}{2}\\
+                             &= (-1)^{(p-1)(q-1)/4}
+\end{align*}
+which is the usual statement of quadratic reciprocity.
 
-Conversely, assume $(\frac{p^*}{q}) = (\frac{q}{p})$.
-Then
-\begin{align}
-  (\frac{p}{q})(\frac{q}{p}) &= (\frac{p}{q})(\frac{p^*}{q})\\
-                             &= (\frac{p}{q})(\frac{p}{q})(\frac{-1}{q})^(\frac{p-1}{2})\\
-                             &= 1*((-1)^((q-1)/2))^(\frac{p-1}{2})\\
-                             &= (-1)^(((q-1)/2) * (\frac{p-1}{2}))\\
-\end{align}
-which is the original statement of quadratic reciprocity.
+This shows the equivalence of $(p^*/q) = (q/p)$ and quadratic reciprocity.
 
-We've proved quadratic reciprocity \iff (\frac{p^*}{q}) = (\frac{q}{p}).
-In other words, quadratic reciprocity is equivalent to the statement
-\[(\frac{p^*}{q}) = 1 \iff (\frac{q}{p}) = 1.\]
+\section{$\jacobi{p^*}{q} = 1 \iff\exists b$ odd s.t. $p\equiv\pm b^2\bmod 4q$}
 
-Let us now prove $(\frac{p^*}{q}) = 1 \iff p = \pm b^2 \mod 4q$ for some odd $b$.
+If $(p^*/q) = 1$, there exists $b$ such that $p^*\equiv b^2\bmod q$. We can assume $b$ is odd by adding $q$ if necessary. Consequently, $b^2\equiv 1\bmod 4$.
 
-If $(\frac{p^*}{q}) = 1$, there exists $x$ such that $p^* = x^2 \mod q$. If $x$ is odd, let $b = x$; otherwise, $b = x+q$. Then $b$ is odd, $b^2 = 1 \mod 4$, and $p^* = b^2 \mod q$.
+If $p\equiv 1\bmod 4$, $p\equiv b^2\bmod q\implies q\mid p-b^2$. Together with $4\mid p-b^2$, we have $p\equiv b^2\bmod 4q$.
 
-If $p = 1\mod 4$, $p - b^2 = 0 \mod 4$, so $p = b^2 \mod 4q$.
 
-If $p = 3\mod 4$, $p + b^2 = 0 \mod 4$, so $p = -b^2 \mod 4q$.
+If $p\equiv 3\bmod 4$, $-p\equiv b^2\bmod q\implies q\mid p+b^2$. Together with $4\mid p+b^2$, we have $p\equiv -b^2\bmod 4q$.
 
-Conversely, if there exists odd $b$ such that $p = \pm b^2 \mod 4q$, then $p = \pm b^2 \mod 4$ and $p = \pm b^2 \mod q$.
-Since $b$ is odd, $b^2 = 1 \mod 4$ and $-b^2 = 3 \mod 4$.
-Thus, if $p = b^2 \mod q$, then $p^* = p$ and $(\frac{p^*}{q}) = 1$.
-If $p = -b^2 \mod q$, then $p^* = -p$ and again $(\frac{p^*}{q}) = 1$.
+Conversely, suppose there is $b$ odd such that $p=b^2\bmod 4q$. Then
+\[p=b^2\bmod 4\implies p=1\bmod 4\implies p^*=p,\textrm{ and}\]
+\[p=b^2\bmod q\implies\jacobi{p}{q}=1\implies\jacobi{p^*}{q}=1.\]
+If there is $b$ odd such that $p=-b^2\bmod 4q$, then
+\[p=-b^2\bmod 4\implies p=3\bmod 4\implies p^*=-p,\textrm{ and}\]
+\[p=-b^2\bmod q\implies\jacobi{-p}{q}=1\implies\jacobi{p^*}{q}=1.\]
 
 \section{The Jacobi symbol as a character}
 
-QR for the Jacobi symbol can be written
-  (\frac{n}{m}) = (-1)^((n-1)/2 * (m-1)/2) (\frac{m}{n}).
-I think it takes this form to allow for both sides to be zero. Not exactly sure
+Quadratic reciprocity for the Jacobi symbol can be written
+\[\left(\frac{n}{m}\right) = (-1)^{\frac{n-1}{2}\cdot\frac{m-1}{2}} \left(\frac{m}{n}\right).\]
+I think it takes this form to allow for both sides to be zero.
 
-In the following, we fix a nonzero integer D which is either 0 or 1 \mod 4.
+In the following, we fix a nonzero integer $D\equiv 0, 1\bmod 4$.
 
 Define a map
-x:(Z/DZ)* -> {\pm 1} by this rule:
-  For [i] in (Z/DZ)*, x([i]) := (\frac{D}{i}) if i is a positive odd integer.
+\[\chi:(\mathbf{Z}/D\mathbf{Z})^* \mapsto \{\pm 1\}\]
+by the rule $[i]\mapsto (D/i)$ if $i$ is a positive odd integer.
 
 First we show that the map is well-defined. We need the following lemma.
 
-Lemma: If k=0,1 \mod 4 and i,j are positive odd integers st i=j \mod k, then (\frac{k}{i}) = (\frac{k}{j}).
-Proof: If k = 1 \mod 4,
-          Case: k>0. (k-1)/2 is even, so QR and (\frac{i}{k}) = (\frac{j}{k}) yield
-          (\frac{k}{i}) = (\frac{i}{k}) = (\frac{j}{k}) = (\frac{k}{j}).
-          Case: k<0. Using (\frac{k}{i}) = (\frac{-1}{i})(\frac{-k}{i}) and QR we get
-          (\frac{k}{i}) = (-1)^((i-1)/2 (1-(k+1)/2)) (j/-k)
-                = (j/-k) since 1-(k+1)/2 is even.
-          The same reasoning shows (j/-k) = (\frac{k}{j}).
-       If k = 0 \mod 4 and k\neq 0, write k = 2^n \sgn(k) k^\prime  where
-       2 not \mid k^\prime , k^\prime >0.
-       (\frac{k}{i}) = (2^n \sgn(k) k^\prime  / i)
-             = (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (\frac{k^\prime }{i}). QR and (i/k^\prime ) = (j/k^\prime ) give
-             = (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (-1)^((k^\prime -1)/2 ((i+j)/2 - 1)) (\frac{k^\prime }{j})
-       But since i = j + 4c for some integer c (remember k = 0 (4)),
-       (i+j)/2 - 1 = (2j + 4c)/2 - 1 = j - 1 + 2c which is even. Thus,
-             = (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (\frac{k^\prime }{j})
+Lemma: If $k\equiv 0,1\bmod 4$ and $i,j$ are positive odd integers st $i\equiv j\bmod k$, then $(\frac{k}{i}) = (\frac{k}{j})$.
+Proof: If $k\equiv 1\bmod 4$,
+          Case: $k>0$. $\frac{k-1}{2}$ is even, so quadratic reciprocity and $(\frac{i}{k}) = (\frac{j}{k})$ yield
+          $(\frac{k}{i}) = (\frac{i}{k}) = (\frac{j}{k}) = (\frac{k}{j})$.
+          Case: $k<0$. Using $(\frac{k}{i}) = (\frac{-1}{i})(\frac{-k}{i})$ and quadratic reciprocity we get
+          $(\frac{k}{i}) = (-1)^{\frac{i-1}{2}\cdot(1-\frac{k+1}{2}} (j/-k)$
+                $= (j/-k)$ since $1-\frac{k+1}{2}$ is even.
+          The same reasoning shows $(j/-k) = (\frac{k}{j})$.
+       If $k\equiv 0\bmod 4$ and $k\neq 0$, write $k = 2^n \sgn(k) k^\prime$  where
+       $2 \nmid k^\prime$ , $k^\prime >0$.
+       $(\frac{k}{i}) = (\frac{2^n \sgn(k) k^\prime}{i})
+             = (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (\frac{k^\prime }{i}). Quadratic reciprocity and (\frac{i}{k^\prime}) = (\frac{j}{k^\prime})$ give
+             $= (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (-1)^{\frac{k^\prime-1)}{2}\left(\frac{i+j}{2} - 1\right)} (\frac{k^\prime }{j})$
+       But since $i = j + 4c$ for some integer $c$ (remember $k\equiv 0\bmod 4$),
+       $(i+j)/2 - 1 = (2j + 4c)/2 - 1 = j - 1 + 2c$ which is even. Thus,
+             $= (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (\frac{k^\prime }{j})
              = (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (\frac{\sgn(k)}{j}) (\sgn(k)k^\prime /j)
-             = (\frac{2}{i})^n (\sgn(k)k^\prime /j) since i=j \mod 4.
-       Finally, to put the powers of two back, we write i = j + m*k^\prime *2^n and consider the following cases.
-          Case: n>2. We have i-j is divisible by 8, so (\frac{2}{i}) = (\frac{2}{j}).
-          Case: n=2. (\frac{2}{i})^2 = (\frac{2}{j})^2 is immediate.
-          In both cases, (\frac{2}{i})^n = (\frac{2}{j})^n, so we can continue
-       (\frac{k}{i}) = (\frac{2}{j})^n (\sgn(k)k^\prime /j)
+             = (\frac{2}{i})^n (\sgn(k)k^\prime /j) since i\equiv j\bmod 4$.
+       Finally, to put the powers of two back, we write $i = j + m*k^\prime *2^n$ and consider the following cases.
+          Case: $n>2$. We have $i-j$ divisible by 8, so $(\frac{2}{i}) = (\frac{2}{j})$.
+          Case: $n=2$. $(\frac{2}{i})^2 = (\frac{2}{j})^2$ is immediate.
+          In both cases, $(\frac{2}{i})^n = (\frac{2}{j})^n$, so we can continue
+       $(\frac{k}{i}) = (\frac{2}{j})^n (\sgn(k)k^\prime /j)
              = (2^n \sgn(k) k^\prime /j)
-             = (\frac{k}{j}).
-       If k=0, the result is trivial, although we do not need this case.
+             = (\frac{k}{j})$.
+       If $k=0$, the result is trivial, although we do not need this case.
 
 (NOTE: In order to make this more clean, this lemma should be put with proofs of the other Jacobi symbol properties)
 
-Continuing with well-definedness, suppose [i] = [j] in (Z/DZ)*, i and j odd. x([i]) = (\frac{D}{i}) and x([j]) = (\frac{D}{j}). (\frac{D}{i}) = (\frac{D}{j}) is a direct application of the lemma.
+Continuing with well-definedness, suppose $[i] = [j]$ in $(\mathbf{Z}/D\mathbf{Z})^*$, $i$ and $j$ odd. $\chi([i]) = (\frac{D}{i}) and \chi([j]) = (\frac{D}{j})$. Then $(\frac{D}{i}) = (\frac{D}{j})$ is a direct application of the lemma.
 
-Next we show that x is total; specifically, for every [i] in (Z/DZ)*, there is some positive odd j such that [j] = [i].
-  Case: i < 0. i+(-i)\midD\mid and i+(-i+1)\midD\mid are both nonnegative and are in the same class as [i]. If D is odd, they have opposite parity so let j be the odd one. If D is even, i must be odd since gcd(i,D)=1, so j can be either one.
-  Case: i > 0. Do the same as the previous case but with candidates i+\midD\mid and i+2\midD\mid.
+Next we show that $\chi$ is total; specifically, for every $[i]\in (\mathbf{Z}/D\mathbf{Z})^*$, there is some positive odd $j$ such that $[j] = [i]$.
+  Case: $i < 0$. $i+(-i)|D|$ and $i+(-i+1)|D|$ are both nonnegative and are in the same class as $[i]$. If $D$ is odd, they have opposite parity so let $j$ be the odd one. If $D$ is even, $i$ must be odd since $\gcd(i,D)=1$, so $j$ can be either one.
+  Case: $i > 0$. Do the same as the previous case but with candidates $i+|D|$ and $i+2|D|$.
 
-The map x is a homomorphism since, assuming a,b odd, x([a][b]) = x([ab]) = (D/ab) = (\frac{D}{a})*(\frac{D}{b}) = x([a])*x([b]) using a basic property of Jacobi symbols.
+The map $\chi$ is a homomorphism since, assuming $a,b$ odd, $\chi([a][b]) = \chi([ab]) = (D/ab) = (\frac{D}{a})\cdot(\frac{D}{b}) = \chi([a])\cdot\chi([b])$ using a basic property of Jacobi symbols.
 
 Now suppose we have a (possibly different) homomorphism
-y:(Z/DZ)* -> {\pm 1}, subject to the constraint that for any positive odd prime p not dividing D we have
-  y([p]) = (\frac{D}{p}).
+$\phi:(\mathbf{Z}/D\mathbf{Z})^* \mapsto {\pm 1}$, subject to the constraint that for any positive odd prime $p$ not dividing $D$ we have
+  $\phi([p]) = (\frac{D}{p})$.
 
-For any [i] in (Z/DZ)*, we showed that there is a positive odd integer j such that [i] = [j]. This means we can write j=p_1^{a_1}\cdot\ldots\cdot p_n^{a_n} where each p_i is a positive odd prime.
+For any $[i]\in (\mathbf{Z}/D\mathbf{Z})^*$, we showed that there is a positive odd integer $j$ such that $[i] = [j]$. This means we can write $j=p_1^{a_1}\cdot\ldots\cdot p_n^{a_n}$ where each $p_i$ is a positive odd prime.
 
-Then y([j]) = y([p_1^{a_1}\cdot\ldots\cdot p_n^{a_n}])
-            = y([p_1])^{a_1}\cdot\ldots\cdot y([p_n])^{a_n}
-            = (D/p_1)^{a_1}\cdot\ldots\cdot (D/p_n)^{a_n}
-            = (D/p_1^{a_1}\cdot\ldots\cdot p_n^{a_n})
-            = (\frac{D}{j}) = x([j]).
+\begin{align*}
+\textrm{Then }
+  y([j]) &= y([p_1^{a_1}\cdot\ldots\cdot p_n^{a_n}])\\
+         &= y([p_1])^{a_1}\cdot\ldots\cdot y([p_n])^{a_n}\\
+         &= (D/p_1)^{a_1}\cdot\ldots\cdot (D/p_n)^{a_n}\\
+         &= (D/p_1^{a_1}\cdot\ldots\cdot p_n^{a_n})\\
+         &= (\frac{D}{j}) = \chi([j]).\\
+\end{align*}
 
-Thus x is the \emph{unique} homomorphism (Z/DZ)* -> {\pm 1} such that x([p]) = (\frac{D}{p}) for positive odd primes p, p not \mid D.
+Thus $\chi$ is the \emph{unique} homomorphism $(\mathbf{Z}/D\mathbf{Z})^* \mapsto {\pm 1}$ such that $\chi([p]) = (\frac{D}{p})$ for positive odd primes $p\nmid D$.
 
-We can calculate some values of x explicitly.
+We can calculate some values of $\chi$ explicitly.
 
-Specifically, for x([-1]):
-If D=1 \mod 4 and D>0 then 2D-1 is odd and positive. Then x([-1]) = x([2D-1]) = (D/(2D-1)) = ((2D-1)/D) = (\frac{-1}{D}) = 1.
-If D=0 \mod 4 and D>0 then D-1 is odd and positive. Then x([-1]) = x([D-1]) = (D/D-1) = (1/D-1) = 1.
-If D=1 \mod 4 and D<0 then -2D-1 is odd and positive. Then x([-1]) = x([-2D-1])
-                                                                  = (D/(-2D-1))
-                                                                  = (-D/(-2D-1))(-1/(-2D-1))
-                                                                  = (\frac{-1}{D})*(-1)^((D+1)(D+1)/2) (-1/(-2D-1))
-                                                                  = -1 * 1 * 1 = -1.
-If D=0 \mod 4 and D<0 then -D-1 is odd and positive. Then (D/(-D-1)) = (-1/(-D-1))(-D/(-D-1)) = (-1)(1/(-D-1)) = -1.
-Summarizing, x([-1]) = 1 if D is positive, -1 otherwise.
+Specifically, for $\chi([-1])$:
+If $D>0$ and $D\equiv 1\bmod 4$ then $2D-1$ is odd and positive. Then
+  \[\chi([-1]) = \chi([2D-1]) = (D/(2D-1)) = ((2D-1)/D) = (\frac{-1}{D}) = 1.\]
+If $D>0$ and $D\equiv 0\bmod 4$ then $D-1$ is odd and positive. Then
+  \[\chi([-1]) = \chi([D-1]) = (D/D-1) = (1/D-1) = 1.\]
+If $D<0$ and $D\equiv 1\bmod 4$ then $-2D-1$ is odd and positive. Then
+\begin{align*}
+  \chi([-1]) &= \chi([-2D-1])\\
+             &= (D/(-2D-1))\\
+             &= (-D/(-2D-1))(-1/(-2D-1))\\
+             &= (\frac{-1}{D})^*(-1)^((D+1)(D+1)/2) (-1/(-2D-1))\\
+             &= -1 * 1 * 1 = -1.\\
+\end{align*}
+If $D<0$ and $D\equiv 0\bmod 4$ then $-D-1$ is odd and positive. Then
+  \[(D/(-D-1)) = (-1/(-D-1))(-D/(-D-1)) = (-1)(1/(-D-1)) = -1.\]
+Summarizing,
+\[\chi([-1]) =
+  \begin{cases}
+    1&\quad D>0\\
+    -1&\quad D<0.
+  \end{cases}
+\]
 
-For x([2]), since 2 is even we must have D odd (so D=1 \mod 4):
-If D>0, 2+D is odd and positive. (D/2+D) = (2+D/D) = (\frac{2}{D}) = 1 if D=1 \mod 8 or -1 if D=5 \mod 8.
-If D<0, 2-D is odd and positive. (D/2-D) = (2/2-D) = 1 if 2-D=1 \mod 8 (so D=1 \mod 8) or -1 if 2-D=5 \mod 8 (i.e. D=5 \mod 8).
-Summarizing, x([2]) = 1 if D=1 \mod 8, -1 otherwise.
+For $\chi([2])$, since 2 is even we must have $D$ odd (so $D\equiv 1\bmod 4$):
+If $D>0$, $2+D$ is odd and positive.
+  \[(D/2+D) = (2+D/D) = (\frac{2}{D}) = 1, D\equiv 1\bmod 8\textrm{ or }-1, D\equiv 5\bmod 8.\]
+If $D<0$, $2-D$ is odd and positive.
+  \[(D/2-D) = (2/2-D) = 1, 2-D=1\bmod 8 (\implies D\equiv 1\bmod 8)\textrm{ or }-1, 2-D\equiv 5\bmod 8 (\implies D\equiv 5\bmod 8).\]
+Summarizing,
+\[\chi([2]) =
+  \begin{cases}
+    1&\quad D\equiv 1\bmod 8\\
+    -1&\quad D\equiv 5\bmod 8.
+  \end{cases}
+\]
 
-One benefit of this homomorphism x is that it gives an equivalent way of thinking about the reciprocity step in representing x^2 + ny^2.
-Remember p\midx^2+ny^2 (gcd(x,y)=1) \iff (\frac{-n}{p})=1.
-This is almost the map x, except there are no restrictions on n whereas x needs the modulus to be 0 or 1 \mod 4.
-The trick is to notice that (\frac{-n}{p})=1 \iff (-4n/p)=1; now the set of primes p dividing x^2+ny^2 are exactly the equivalence classes [p] for which x([p])=1 (with D=-4n).
+One benefit of this homomorphism $\chi$ is that it gives an equivalent way of thinking about the reciprocity step in representing $x^2 + ny^2$.
+Remember $p\mid x^2+ny^2$, $\gcd(x,y)=1 \iff (\frac{-n}{p})=1$.
+This is almost the map $\chi$, except there are no restrictions on $n$ whereas $\chi$ needs the modulus to be 0 or $1\bmod 4$.
+The trick is to notice that $(\frac{-n}{p})=1 \iff (-4n/p)=1$; now the set of primes $p$ dividing $x^2+ny^2$ are exactly the equivalence classes $[p]$ for which $\chi([p])=1$ (with $D=-4n$).
 
-The book then gives a characterization of ker(x) which I don't see the significance of (besides having historical context) but maybe this will change as I read more.
+The book then gives a characterization of $\ker(x)$ which I don't see the significance of (besides having historical context) but maybe this will change as I read more.
 
 \end{document}
