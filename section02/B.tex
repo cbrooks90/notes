@@ -22,7 +22,7 @@ $x^2+ny^2$ is reduced for all positive $n$ since $|b|=0< 1\leq n$ and $b\geq 0$ 
 
 \subsection{Case: $n$ is not a prime power}
 
-Write $n=a\cdot c$ with $\gcd(a,c)=1$. Then one of $ax^2+cy^2$ or $cx^2+ay^2$ is reduced, and both have discriminant $-4ac=-4n$. So in this case $h(-4n)>1$.
+Write $n=a\cdot c$ with $\gcd(a,c)=1$ (neither $a$ nor $c$ is 1, or else we're recounting the forms above). Then one of $ax^2+cy^2$ or $cx^2+ay^2$ is reduced, and both have discriminant $-4ac=-4n$. So in this case $h(-4n)>1$.
 
 \subsection{Case: $n$ is a power of 2 and $n\geq 16$}
 
@@ -47,3 +47,37 @@ Write $n+1 = ac$ where $a = 2^m$ and $c$ is odd. If $a<c$, $ax^2+2xy+cy^2$ is re
 so $h(-4n)>1$ in this case.
 
 \subsection{Case: $n$ is not in one of the above cases}
+
+The only cases not covered above are powers of 2 less than 16 and odd prime powers less than 63 whose successor is a power of two. Specifically, we're left with
+\[n=1, 2, 4, 8\quad\textrm{and}\quad n=3, 7, 31.\]
+
+For $n=8$, $3x^2+2xy+3y^2$ is reduced, so $h(-4\cdot 8)>1$.
+
+For $n=31$, $5x^2\pm 4xy+7y^2$ are reduced, so $h(-4\cdot 31)>2$.
+
+For a reduced form, $a\leq\sqrt{4n/3}$.
+
+For $n=1$, $a\leq 1\implies a=1$ and $4=4c-b^2\implies b=0, c=1$.
+
+For $n=2$, $a\leq 1\implies a=1$ and $8=4c-b^2\implies b=0, c=2$.
+
+For $n=3$, $a\leq 2$, and
+\begin{align*}
+12=4c-b^2&\implies b\neq 1,2,\textrm{ so }b=0,c=3.\\
+12=8c-b^2&\implies b\neq 0,1,\textrm{ but }a=2, b=2, c=2\textrm{ is not primitive.}
+\end{align*}
+
+For $n=4$, $a\leq 2$, and
+\begin{align*}
+16=4c-b^2&\implies b\neq 1,2,\textrm{ so }b=0,c=4.\\
+16=8c-b^2&\implies b\neq 1,2\textrm{ but }a=2, b=0, c=2\textrm{ is not primitive.}\\
+\end{align*}
+
+For $n=7$, $a\leq 3$, and
+\begin{align*}
+28=4c-b^2&\implies b\neq 1,2,3,\textrm{ so }&b=0,c=7.\\
+28=8c-b^2&\implies b\neq 0,1,3\textrm{ but }&a=2, b=2, c=4\textrm{ is not primitive.}\\
+28=12c-b^2&\implies b\neq 0,1,2,3.\\
+\end{align*}
+
+So we've proved that $h(-4n)=1$, $n>0\iff n=1, 2, 3, 4, 7$.
