@@ -16,4 +16,34 @@ How does this relate to $\chi$? Well, say we develop more theory and you ask, fo
 
 \emph{A priori}, this might not be super helpful. The things that we showed about $\chi$ allow us to rephrase the reciprocity condition in terms of congruence classes modulo $-4n$, and presumably the conditions we add later will tell us how to partition those congruence classes further. I think this is the point of corollary 1.19 and the subsequent discussion of the characterisation of $\ker(\chi)$.
 
-\section{When is $h(-4n)=1$?}
+\section{When is $h(-4n)=1$ for $n>0$?}
+
+$x^2+ny^2$ is reduced for all positive $n$ since $|b|=0< 1\leq n$ and $b\geq 0$ so we don't care if $a=c$.
+
+\subsection{Case: $n$ is not a prime power}
+
+Write $n=a\cdot c$ with $\gcd(a,c)=1$. Then one of $ax^2+cy^2$ or $cx^2+ay^2$ is reduced, and both have discriminant $-4ac=-4n$. So in this case $h(-4n)>1$.
+
+\subsection{Case: $n$ is a power of 2 and $n\geq 16$}
+
+For $r\geq 2$, the quadratic form
+\[4x^2+4xy+(2^r+1)y^2\]
+is reduced since $4\leq 4\leq 2^r+1$ and $b\geq 0$. The discriminant is
+\[16-4\cdot 4\cdot (2^r+1)=16(1-(2^r+1))=-16\cdot 2^r=-4\cdot 2^{r+2}.\]
+So $h(-4n)>1$ when $n\geq 2^{2+2}=16$ is a power of 2.
+
+\subsection{Case: $n+1$ is a power of 2 and $n\geq 63$}
+
+For $s\geq 3$, the quadratic form
+\[8x^2+6xy+(2^s+1)y^2\]
+is reduced since $6\leq 8\leq 2^3+1$ and $b\geq 0$. The discriminant is
+\[36-32(2^s+1)=4-2^{s+5}=-4(2^{s+3}-1).\]
+So $h(-4n)>1$ when $n\geq 2^{3+3}-1=63$ and $n+1$ is a power of 2. There is some overlap here with the first case but it doesn't affect the result. If we wanted to make \emph{disjoint} cases which cover all positive integers we could restrict $n$ to be an odd prime power. This is what the book does.
+
+\subsection{Case: $n+1$ is even but not a power of 2}
+
+Write $n+1 = ac$ where $a = 2^m$ and $c$ is odd. If $a<c$, $ax^2+2xy+cy^2$ is reduced and $cx^2+2xy+ay^2$ is reduced if $c<a$. In either case the discriminant is
+\[4-4ac=-4(ac-1)=-4n,\]
+so $h(-4n)>1$ in this case.
+
+\subsection{Case: $n$ is not in one of the above cases}
