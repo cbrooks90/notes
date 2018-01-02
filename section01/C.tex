@@ -3,6 +3,8 @@
 \usepackage{enumitem}
 \usepackage{color}
 
+\nonzeroparskip
+
 \setlength{\uppermargin}{22mm}
 \setlength{\spinemargin}{22mm}
 \setlength{\textheight}{206mm}
@@ -51,14 +53,14 @@ Here is an elementary proof for $a=2$: Fix a positive odd number $n = 2k+1$ and 
 Define $f:[k]\to[k]$ by
 \[f(i) =
   \begin{cases}
-    \frac{i}{2} &i\textrm{ even}\\
-    \frac{n-i}{2} &i\textrm{ odd}.
+    \frac{i}{2} &i\text{ even}\\
+    \frac{n-i}{2} &i\text{ odd}.
   \end{cases}
 \]
 $f$ is surjective since
 \begin{align*}
-  i\leq k/2 &\implies 2i\leq k\textrm{ and }f(2i) = i\\
-  i > k/2 &\implies n-2i < n-k = k+1\textrm{ and }f(n-2i) = i.
+  i\leq k/2 &\implies 2i\leq k\text{ and }f(2i) = i\\
+  i > k/2 &\implies n-2i < n-k = k+1\text{ and }f(n-2i) = i.
 \end{align*}
 Since the domain and codomain are equal, $f$ is a bijection. Thus,
 \[\prod_{i=1}^k f(i) = k!\quad\implies\quad\prod_{i=1}^k (-1)^i\cdot 2\cdot f(i) = (-1)^\frac{k^2 + k}{2}\cdot 2^k\cdot k!.\]
@@ -120,56 +122,75 @@ If $p\equiv 1\bmod 4$, $p\equiv b^2\bmod q\implies q\mid p-b^2$. Together with $
 If $p\equiv 3\bmod 4$, $-p\equiv b^2\bmod q\implies q\mid p+b^2$. Together with $4\mid p+b^2$, we have $p\equiv -b^2\bmod 4q$.
 
 Conversely, suppose there is $b$ odd such that $p=b^2\bmod 4q$. Then
-\[p=b^2\bmod 4\implies p=1\bmod 4\implies p^*=p,\textrm{ and}\]
-\[p=b^2\bmod q\implies\jacobi{p}{q}=1\implies\jacobi{p^*}{q}=1.\]
-If there is $b$ odd such that $p=-b^2\bmod 4q$, then
-\[p=-b^2\bmod 4\implies p=3\bmod 4\implies p^*=-p,\textrm{ and}\]
-\[p=-b^2\bmod q\implies\jacobi{-p}{q}=1\implies\jacobi{p^*}{q}=1.\]
+\begin{align*}
+p=b^2\bmod 4&\implies p=1\bmod 4\implies p^*=p,\text{ and}\\
+p=b^2\bmod q&\implies\jacobi{p}{q}=1\implies\jacobi{p^*}{q}=1.
+\intertext{If there is $b$ odd such that $p=-b^2\bmod 4q$, then}
+p=-b^2\bmod 4&\implies p=3\bmod 4\implies p^*=-p,\text{ and}\\
+p=-b^2\bmod q&\implies\jacobi{-p}{q}=1\implies\jacobi{p^*}{q}=1.
+\end{align*}
 
 \section{The Jacobi symbol as a character}
 
 Quadratic reciprocity for the Jacobi symbol can be written
-\[\left(\frac{n}{m}\right) = (-1)^{\frac{n-1}{2}\cdot\frac{m-1}{2}} \left(\frac{m}{n}\right).\]
-I think it takes this form to allow for both sides to be zero.
+\[\jacobi{n}{m} = (-1)^{\frac{n-1}{2}\cdot\frac{m-1}{2}} \jacobi{m}{n}.\]
+There is an asymmetry with reciprocity in the case when $m$ is not prime.
 
-In the following, we fix a nonzero integer $D\equiv 0, 1\bmod 4$.
-
-Define a map
+In the following, we fix a nonzero integer $D\equiv 0, 1\bmod 4$. Define a map
 \[\chi:(\mathbf{Z}/D\mathbf{Z})^* \mapsto \{\pm 1\}\]
-by the rule $[i]\mapsto (D/i)$ if $i$ is a positive odd integer.
+by the rule
+\[[i]\mapsto(D/i)\text{ if $i$ is a positive odd integer.}\]
 
 First we show that the map is well-defined. We need the following lemma.
 
-Lemma: If $k\equiv 0,1\bmod 4$ and $i,j$ are positive odd integers st $i\equiv j\bmod k$, then $(\frac{k}{i}) = (\frac{k}{j})$.
-Proof: If $k\equiv 1\bmod 4$,
-          Case: $k>0$. $\frac{k-1}{2}$ is even, so quadratic reciprocity and $(\frac{i}{k}) = (\frac{j}{k})$ yield
-          $(\frac{k}{i}) = (\frac{i}{k}) = (\frac{j}{k}) = (\frac{k}{j})$.
-          Case: $k<0$. Using $(\frac{k}{i}) = (\frac{-1}{i})(\frac{-k}{i})$ and quadratic reciprocity we get
-          $(\frac{k}{i}) = (-1)^{\frac{i-1}{2}\cdot(1-\frac{k+1}{2}} (j/-k)$
-                $= (j/-k)$ since $1-\frac{k+1}{2}$ is even.
-          The same reasoning shows $(j/-k) = (\frac{k}{j})$.
-       If $k\equiv 0\bmod 4$ and $k\neq 0$, write $k = 2^n \sgn(k) k^\prime$  where
-       $2 \nmid k^\prime$ , $k^\prime >0$.
-       $(\frac{k}{i}) = (\frac{2^n \sgn(k) k^\prime}{i})
-             = (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (\frac{k^\prime }{i}). Quadratic reciprocity and (\frac{i}{k^\prime}) = (\frac{j}{k^\prime})$ give
-             $= (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (-1)^{\frac{k^\prime-1)}{2}\left(\frac{i+j}{2} - 1\right)} (\frac{k^\prime }{j})$
-       But since $i = j + 4c$ for some integer $c$ (remember $k\equiv 0\bmod 4$),
-       $(i+j)/2 - 1 = (2j + 4c)/2 - 1 = j - 1 + 2c$ which is even. Thus,
-             $= (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (\frac{k^\prime }{j})
-             = (\frac{2}{i})^n (\frac{\sgn(k)}{i}) (\frac{\sgn(k)}{j}) (\sgn(k)k^\prime /j)
-             = (\frac{2}{i})^n (\sgn(k)k^\prime /j) since i\equiv j\bmod 4$.
-       Finally, to put the powers of two back, we write $i = j + m*k^\prime *2^n$ and consider the following cases.
-          Case: $n>2$. We have $i-j$ divisible by 8, so $(\frac{2}{i}) = (\frac{2}{j})$.
-          Case: $n=2$. $(\frac{2}{i})^2 = (\frac{2}{j})^2$ is immediate.
-          In both cases, $(\frac{2}{i})^n = (\frac{2}{j})^n$, so we can continue
-       $(\frac{k}{i}) = (\frac{2}{j})^n (\sgn(k)k^\prime /j)
-             = (2^n \sgn(k) k^\prime /j)
-             = (\frac{k}{j})$.
-       If $k=0$, the result is trivial, although we do not need this case.
+Lemma: If $k\equiv 0,1\bmod 4$ and $i,j$ are positive odd integers such that $i\equiv j\bmod k$, then $(k/i) = (k/j)$.
+
+Proof:
+\begin{enumerate}[label={Case \arabic*:}]
+\item $k\equiv 1\bmod 4$, $k>0$. $\frac{k-1}{2}$ is even, so quadratic reciprocity and $(i/k) = (j/k)$ yield
+\[\jacobi{k}{i}=\jacobi{i}{k}=\jacobi{j}{k}=\jacobi{k}{j}.\]
+
+\item $k\equiv 1\bmod 4$, $k<0$. Using $(k/i) = (-1/i)(-k/i)$ and quadratic reciprocity we get
+\[\jacobi{k}{i}=(-1)^{\frac{i-1}{2}\cdot\left(1-\frac{k+1}{2}\right)}\jacobi{i}{-k}=\jacobi{j}{-k}\]
+since $1-\frac{k+1}{2}$ is even. Using the same steps, we show
+\[\jacobi{j}{-k} = \jacobi{k}{j}.\]
+
+\item $k\equiv 0\bmod 4$, $k\neq 0$, write $k = 2^n \sgn(k)\cdot k^\prime$  where $2 \nmid k^\prime$ and $k^\prime>0$.
+\begin{align*}
+\jacobi{k}{i}&=\jacobi{2^n \sgn(k) k^\prime}{i}\\
+&=\jacobi{2}{i}^n \jacobi{\sgn(k)}{i}\jacobi{k^\prime }{i}.\\
+\intertext{Quadratic reciprocity and $(i/k^\prime) = (j/k^\prime)$ give}
+&=\jacobi{2}{i}^n \jacobi{\sgn(k)}{i} (-1)^{\frac{k^\prime-1)}{2}\left(\frac{i+j}{2} - 1\right)}\jacobi{k^\prime }{j}.
+\intertext{But since $i = j + 4c$ for some integer $c$ (remember $k\equiv 0\bmod 4$),}
+(i+j)/2 - 1 &= (2j + 4c)/2 - 1 = j - 1 + 2c\\
+\intertext{which is even. Thus,}
+\jacobi{k}{i}&=\jacobi{2}{i}^n \jacobi{\sgn(k)}{i}\jacobi{k^\prime }{j}\\
+&=\jacobi{2}{i}^n\jacobi{\sgn(k)}{i}\jacobi{\sgn(k)}{j}\jacobi{\sgn(k)k^\prime}{j}\\
+&=\jacobi{2}{i}^n\jacobi{\sgn(k)k^\prime}{j}
+\end{align*}
+since $i\equiv j\bmod 4$.
+
+Finally, to put the powers of two back, we write $i = j + m\cdot k^\prime\cdot 2^n$ and consider the following cases.
+
+$n>2$: We have $i-j$ divisible by 8, so $(2/i) = (2/j)$.
+
+$n=2$: $(2/i)^2 = (2/j)^2$ is immediate.
+
+In both cases,
+\[\jacobi{2}{i}^n = \jacobi{2}{j}^n,\]
+so we can continue
+\begin{align*}
+\jacobi{k}{i}&=\jacobi{2}{j}^n\jacobi{\sgn(k)k^\prime}{j}\\
+&=\jacobi{2^n \sgn(k) k^\prime}{j}\\
+&=\jacobi{k}{j}.
+\end{align*}
+\item $k=0$. This case is trivial, although we do not need it for our applications.
+\end{enumerate}
 
 (NOTE: In order to make this more clean, this lemma should be put with proofs of the other Jacobi symbol properties)
 
-Continuing with well-definedness, suppose $[i] = [j]$ in $(\mathbf{Z}/D\mathbf{Z})^*$, $i$ and $j$ odd. $\chi([i]) = (\frac{D}{i}) and \chi([j]) = (\frac{D}{j})$. Then $(\frac{D}{i}) = (\frac{D}{j})$ is a direct application of the lemma.
+Continuing with well-definedness, suppose $[i] = [j]$ in $(\mathbf{Z}/D\mathbf{Z})^*$, $i$ and $j$ odd.
+\[\chi([i])=\jacobi{D}{i}\quad\text{and}\quad\chi([j])=\jacobi{D}{j}.\] Then $(D/i)=(D/j)$ is a direct application of the lemma.
 
 Next we show that $\chi$ is total; specifically, for every $[i]\in (\mathbf{Z}/D\mathbf{Z})^*$, there is some positive odd $j$ such that $[j] = [i]$.
   Case: $i < 0$. $i+(-i)|D|$ and $i+(-i+1)|D|$ are both nonnegative and are in the same class as $[i]$. If $D$ is odd, they have opposite parity so let $j$ be the odd one. If $D$ is even, $i$ must be odd since $\gcd(i,D)=1$, so $j$ can be either one.
@@ -178,39 +199,41 @@ Next we show that $\chi$ is total; specifically, for every $[i]\in (\mathbf{Z}/D
 The map $\chi$ is a homomorphism since, assuming $a,b$ odd, $\chi([a][b]) = \chi([ab]) = (D/ab) = (\frac{D}{a})\cdot(\frac{D}{b}) = \chi([a])\cdot\chi([b])$ using a basic property of Jacobi symbols.
 
 Now suppose we have a (possibly different) homomorphism
-$\phi:(\mathbf{Z}/D\mathbf{Z})^* \mapsto {\pm 1}$, subject to the constraint that for any positive odd prime $p$ not dividing $D$ we have
+$\phi:(\mathbf{Z}/D\mathbf{Z})^*\to\{\pm 1\}$, subject to the constraint that for any positive odd prime $p$ not dividing $D$ we have
   $\phi([p]) = (\frac{D}{p})$.
 
-For any $[i]\in (\mathbf{Z}/D\mathbf{Z})^*$, we showed that there is a positive odd integer $j$ such that $[i] = [j]$. This means we can write $j=p_1^{a_1}\cdot\ldots\cdot p_n^{a_n}$ where each $p_i$ is a positive odd prime.
-
+For any $[i]\in (\mathbf{Z}/D\mathbf{Z})^*$, we showed that there is a positive odd integer $j$ such that $[i] = [j]$. This means we can write $j=p_1^{a_1}\cdot\ldots\cdot p_n^{a_n}$ where each $p_i$ is a positive odd prime. Then
 \begin{align*}
-\textrm{Then }
-  y([j]) &= y([p_1^{a_1}\cdot\ldots\cdot p_n^{a_n}])\\
-         &= y([p_1])^{a_1}\cdot\ldots\cdot y([p_n])^{a_n}\\
-         &= (D/p_1)^{a_1}\cdot\ldots\cdot (D/p_n)^{a_n}\\
-         &= (D/p_1^{a_1}\cdot\ldots\cdot p_n^{a_n})\\
-         &= (\frac{D}{j}) = \chi([j]).\\
+\phi([j]) &= \phi([p_1^{a_1}\cdots p_n^{a_n}])\\
+       &= \phi([p_1])^{a_1}\cdots \phi([p_n])^{a_n}\\
+       &= \jacobi{D}{p_1}^{a_1}\cdots\jacobi{D}{p_n}^{a_n}\\
+       &= \jacobi{D}{p_1^{a_1}\cdots p_n^{a_n}}\\
+       &= \jacobi{D}{j} = \chi([j]).
 \end{align*}
+Thus $\chi$ is the \emph{unique} homomorphism
+$(\mathbf{Z}/D\mathbf{Z})^* \mapsto {\pm 1}$
+such that $\chi([p]) = (D/p)$ for positive odd primes $p\nmid D$.
 
-Thus $\chi$ is the \emph{unique} homomorphism $(\mathbf{Z}/D\mathbf{Z})^* \mapsto {\pm 1}$ such that $\chi([p]) = (\frac{D}{p})$ for positive odd primes $p\nmid D$.
+We can calculate some values of $\chi$ explicitly, namely $-1$ and 2.
 
-We can calculate some values of $\chi$ explicitly.
-
-Specifically, for $\chi([-1])$:
 If $D>0$ and $D\equiv 1\bmod 4$ then $2D-1$ is odd and positive. Then
-  \[\chi([-1]) = \chi([2D-1]) = (D/(2D-1)) = ((2D-1)/D) = (\frac{-1}{D}) = 1.\]
+\[\chi([-1])=\chi([2D-1])=\jacobi{D}{2D-1}=\jacobi{2D-1}{D}=\jacobi{-1}{D}=1.\]
+
 If $D>0$ and $D\equiv 0\bmod 4$ then $D-1$ is odd and positive. Then
-  \[\chi([-1]) = \chi([D-1]) = (D/D-1) = (1/D-1) = 1.\]
+\[\chi([-1]) = \chi([D-1]) = \jacobi{D}{D-1} = \jacobi{1}{D-1} = 1.\]
+
 If $D<0$ and $D\equiv 1\bmod 4$ then $-2D-1$ is odd and positive. Then
 \begin{align*}
   \chi([-1]) &= \chi([-2D-1])\\
-             &= (D/(-2D-1))\\
-             &= (-D/(-2D-1))(-1/(-2D-1))\\
-             &= (\frac{-1}{D})^*(-1)^((D+1)(D+1)/2) (-1/(-2D-1))\\
-             &= -1 * 1 * 1 = -1.\\
+             &= \jacobi{D}{-2D-1}\\
+             &= \jacobi{-D}{-2D-1}\jacobi{-1}{-2D-1}\\
+             &= \jacobi{-1}{D}\cdot(-1)^\frac{(D+1)(D+1)}{2}\jacobi{-1}{-2D-1}\\
+             &= -1\cdot 1\cdot 1 = -1.
 \end{align*}
+
 If $D<0$ and $D\equiv 0\bmod 4$ then $-D-1$ is odd and positive. Then
-  \[(D/(-D-1)) = (-1/(-D-1))(-D/(-D-1)) = (-1)(1/(-D-1)) = -1.\]
+\[\jacobi{D}{-D-1} = \jacobi{-1}{-D-1}\jacobi{-D}{-D-1} = (-1)\jacobi{1}{-D-1} = -1.\]
+
 Summarizing,
 \[\chi([-1]) =
   \begin{cases}
@@ -219,16 +242,22 @@ Summarizing,
   \end{cases}
 \]
 
-For $\chi([2])$, since 2 is even we must have $D$ odd (so $D\equiv 1\bmod 4$):
+For $\chi([2])$, since 2 is even we must have $D$ odd (so $D\equiv 1\bmod 4$).
+
 If $D>0$, $2+D$ is odd and positive.
-  \[(D/2+D) = (2+D/D) = (\frac{2}{D}) = 1, D\equiv 1\bmod 8\textrm{ or }-1, D\equiv 5\bmod 8.\]
-If $D<0$, $2-D$ is odd and positive.
-  \[(D/2-D) = (2/2-D) = 1, 2-D=1\bmod 8 (\implies D\equiv 1\bmod 8)\textrm{ or }-1, 2-D\equiv 5\bmod 8 (\implies D\equiv 5\bmod 8).\]
+\[\jacobi{D}{2+D} = \jacobi{2+D}{D} = \jacobi{2}{D} = 1, D\equiv 1\bmod 8\text{ or }-1, D\equiv 5\bmod 8.\]
+
+If $D<0$, $2{-}D$ is odd and positive.
+\begin{align*}
+\jacobi{D}{2{-}D} = \jacobi{2}{2{-}D} &= 1\text{ when }2{-}D=1\bmod 8 (\implies D\equiv 1\bmod 8)\\
+&=-1\text{ when }2{-}D\equiv 5\bmod 8 (\implies D\equiv 5\bmod 8).
+\end{align*}
+
 Summarizing,
 \[\chi([2]) =
   \begin{cases}
-    1&\quad D\equiv 1\bmod 8\\
-    -1&\quad D\equiv 5\bmod 8.
+    1& D\equiv 1\bmod 8\\
+    -1& D\equiv 5\bmod 8.
   \end{cases}
 \]
 
