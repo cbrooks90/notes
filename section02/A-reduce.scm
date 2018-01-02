@@ -18,6 +18,24 @@
         [(= a c) (list a (- b) c)]
         [else (list a b c)]))
 
+(define (reduced-pos-def-forms D)
+  (define (aux a bs)
+    (let loop ([bs bs])
+      (if (null? bs) '()
+          (let-values ([(q r) (div-and-mod (- (* (car bs) (car bs)) D) (* 4 a))])
+            (cond [(> r 0) (loop (cdr bs))]
+                  [(> (gcd a (car bs) q) 1) (loop (cdr bs))]
+                  [else (cons (list a (car bs) q)
+                              (if (or (= a q) (= a (car bs)) (zero? (car bs)))
+                                  (loop (cdr bs))
+                                  (cons (list a (- (car bs)) q) (loop (cdr bs)))))])))))
+  (let ([as (cdr (iota (+ 1 (exact (floor (sqrt (/ (- D) 3)))))))])
+    (let loop ([as as] [bs (list (if (even? D) 0 1))])
+      (if (null? as) '()
+          (append
+            (aux (car as) bs)
+            (loop (cdr as) (if (= (car as) (car bs)) bs (cons (+ (car bs) 2) bs))))))))
+
 (define (discriminant a b c)
   (- (* b b) (* 4 a c)))
 
