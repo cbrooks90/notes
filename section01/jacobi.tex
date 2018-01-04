@@ -42,4 +42,51 @@ Conversely, suppose $a^\frac{p-1}{2} = 1$ and take $j$ such that $a = g^j$. Then
 Then $a = g^{2k} = (g^k)^2$ and $(a/p) = 1$. The cases $(a/p) = -1$ or 0 are immediate.
 \end{proof}
 
+\begin{lem*}
+If $k\equiv 0,1\bmod 4$ and $i,j$ are positive odd integers such that $i\equiv j\bmod k$, then $(k/i) = (k/j)$.
+\end{lem*}
+
+\begin{proof}
+\begin{description}
+\item [$k\equiv 1\bmod 4$, $k>0:$] $\frac{k-1}{2}$ is even, so quadratic reciprocity and $(i/k) = (j/k)$ yield
+\[\jacobi{k}{i}=\jacobi{i}{k}=\jacobi{j}{k}=\jacobi{k}{j}.\]
+
+\item [$k\equiv 1\bmod 4$, $k<0:$] Using $(k/i) = (-1/i)(-k/i)$ and quadratic reciprocity we get
+\[\jacobi{k}{i}=(-1)^{\frac{i-1}{2}\cdot\left(1-\frac{k+1}{2}\right)}\jacobi{i}{-k}=\jacobi{j}{-k}\]
+since $1-\frac{k+1}{2}$ is even. Using the same steps, we show
+\[\jacobi{j}{-k} = \jacobi{k}{j}.\]
+
+\item [$k\equiv 0\bmod 4$, $k\neq 0:$] Write $k = 2^n \sgn(k)\cdot k^\prime$ where $2 \nmid k^\prime$ and $k^\prime>0$.
+\begin{align*}
+\jacobi{k}{i}&=\jacobi{2^n \sgn(k) k^\prime}{i}\\
+&=\jacobi{2}{i}^n \jacobi{\sgn(k)}{i}\jacobi{k^\prime }{i}.\\
+\intertext{Quadratic reciprocity and $(i/k^\prime) = (j/k^\prime)$ give}
+&=\jacobi{2}{i}^n \jacobi{\sgn(k)}{i} (-1)^{\frac{k^\prime-1)}{2}\left(\frac{i+j}{2} - 1\right)}\jacobi{k^\prime }{j}.
+\intertext{But since $i = j + 4c$ for some integer $c$ (remember $k\equiv 0\bmod 4$),}
+(i+j)/2 - 1 &= (2j + 4c)/2 - 1 = j - 1 + 2c\\
+\intertext{which is even. Thus,}
+\jacobi{k}{i}&=\jacobi{2}{i}^n \jacobi{\sgn(k)}{i}\jacobi{k^\prime }{j}\\
+&=\jacobi{2}{i}^n\jacobi{\sgn(k)}{i}\jacobi{\sgn(k)}{j}\jacobi{\sgn(k)k^\prime}{j}\\
+&=\jacobi{2}{i}^n\jacobi{\sgn(k)k^\prime}{j}
+\end{align*}
+since $i\equiv j\bmod 4$.
+
+Finally, to put the powers of two back, we write $i = j + m\cdot k^\prime\cdot 2^n$ and consider the following cases.
+
+$n>2$: We have $i-j$ divisible by 8, so $(2/i) = (2/j)$.
+
+$n=2$: $(2/i)^2 = (2/j)^2$ is immediate.
+
+In both cases,
+\[\jacobi{2}{i}^n = \jacobi{2}{j}^n,\]
+so we can continue
+\begin{align*}
+\jacobi{k}{i}&=\jacobi{2}{j}^n\jacobi{\sgn(k)k^\prime}{j}\\
+&=\jacobi{2^n \sgn(k) k^\prime}{j}\\
+&=\jacobi{k}{j}.
+\end{align*}
+\item [$k=0:$] This case is trivial, although we do not need it for our applications.
+\end{description}
+\end{proof}
+
 \end{document}
