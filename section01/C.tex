@@ -1,20 +1,4 @@
-\documentclass[b5paper,12pt,oneside,openright]{memoir}
-\usepackage{amsmath, amsthm, amssymb}
-\usepackage{enumitem}
-\usepackage{color}
-
-\nonzeroparskip
-
-\setlength{\uppermargin}{22mm}
-\setlength{\spinemargin}{22mm}
-\setlength{\textheight}{206mm}
-\setlength{\textwidth}{132mm}
-\setlength{\oddsidemargin}{0mm}
-\fixthelayout
-
-\DeclareMathOperator{\sgn}{sgn}
-\newcommand{\jacobi}[2]{\left(\frac{#1}{#2}\right)}
-
+\input{../preamble.tex}
 \begin{document}
 \section{The relation between $p\mid x^2+ny^2$ and quadratic reciprocity}
 Suppose $x^2 + ny^2 = kp$ for some $k$. Assume there is a common divisor of $y$ and $p$ which is prime; since $p$ is prime, it must be $p$.
@@ -32,14 +16,9 @@ Consider the conditions on $p$ in 1.1: The moduli for $n=1$ and 2 are already mu
 
 \section{Computing $\jacobi{-1}{p}$ and $\jacobi{2}{p}$}
 
-I took a small break to prove the formulas for $(-1/p)$ and $(2/p)$. These follow from Euler's criterion, which is proved like this:
+I took a small break to prove the formulas for $(-1/p)$ and $(2/p)$. These follow from Euler's criterion.
 
-Take $a \neq 0$ in $\mathbf{F}_p$ and let $g$ be a primitive element of $\mathbf{F}_p$. Suppose $(a/p) = 1$, then $a = g^{2i}$ for some $i$.
-\[a^\frac{p-1}{2} = (g^{2i})^\frac{p-1}{2} = (g^{p-1})^i = 1.\]
-
-Conversely, suppose $a^\frac{p-1}{2} = 1$ and take $j$ such that $a = g^j$. Then $g^{j\cdot\frac{p-1}{2}} = 1$, but the order of $g$ is $p-1$, so
-\[\exists k,\ k(p-1)=j\cdot\frac{p-1}{2}\implies 2k=j.\]
-Then $a = g^{2k} = (g^k)^2$ and $(a/p) = 1$. The cases $(a/p) = -1$ or 0 are immediate, which proves $(a/p) = a^\frac{p-1}{2}$. In particular, $a=-1$ yields
+$a=-1$ yields
 \[\jacobi{-1}{p} = (-1)^\frac{p-1}{2} =
   \begin{cases}
      1 &\quad p\equiv 1\bmod 4\\

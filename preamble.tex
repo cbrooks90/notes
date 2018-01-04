@@ -1,0 +1,20 @@
+\documentclass[b5paper,12pt,oneside,openright]{memoir}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{color}
+
+\nonzeroparskip
+
+\setlength{\uppermargin}{22mm}
+\setlength{\spinemargin}{22mm}
+\setlength{\textheight}{206mm}
+\setlength{\textwidth}{132mm}
+\setlength{\oddsidemargin}{0mm}
+\fixthelayout
+
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\jacobi}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\Zmod}[1]{\mathbf{Z}/#1\mathbf{Z}}
