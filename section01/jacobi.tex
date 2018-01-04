@@ -1,0 +1,45 @@
+\input{../preamble.tex}
+\begin{document}
+
+\section{Definition}
+
+Let $p$ be an odd prime. We take as primitive the function $\jacobi{\cdot}{p}:\Zmod{p}\to\{-1,0,1\}$, defined by
+\[\jacobi{a}{p}=
+  \begin{cases}
+    1&\exists x\in(\Zmod{p})^\times,\ a=x^2\\
+    -1&\forall x\in\Zmod{p},\ a\neq x^2\\
+    0&a=0.
+  \end{cases}
+\]
+
+We can define $(a/p)$ for all $a\in\mathbf{Z}$. Let $[a]_{p}$ be the image of the usual map $\mathbf{Z}\to\Zmod{p}$. Then
+\[\jacobi{a}{p}:=\jacobi{[a]_{p}}{p}.\]
+
+Going further, we can define $(a/n)$ for any positive odd integer $n$. Writing the factorization of $n$ into distinct odd primes,
+\[n=\prod_{i=1}^kp_i^{\alpha_i}\implies\jacobi{a}{n}:=\prod_{i=1}^k\jacobi{a}{p_i}^{\alpha_i}.\]
+By the empty product convention, $(a/1)=1$ for any $a$. Also note that the meaning of $(\,\cdot\,/n)$ is unambiguous when $n$ is prime.
+
+\section{Properties}
+
+Suppose $a\equiv b\bmod n$ where $n$ is a positive odd integer and $n=\prod_{i=1}^kp_i^{\alpha_i}$. Then
+\begin{align*}
+\jacobi{a}{n}&=\prod_{i=1}^k\jacobi{a}{p_i}^{\alpha_i}&\jacobi{b}{n}&=\prod_{i=1}^k\jacobi{b}{p_i}^{\alpha_i}\\
+&=\prod_{i=1}^k\jacobi{[a]_{p_i}}{p_i}^{\alpha_i}&&=\prod_{i=1}^k\jacobi{[b]_{p_i}}{p_i}^{\alpha_i}.\\
+\end{align*}
+For each $i$ we have $[a]_{p_i}=[b]_{p_i}$, so $(a/n)=(b/n)$.
+
+\begin{thm*}
+Let $p$ be an odd prime. For all $a\in\mathbf{Z}$,
+\[\jacobi{a}{p}\equiv a^\frac{p-1}{2}\bmod p.\]
+\end{thm*}
+
+\begin{proof}
+Let $a\in\mathbf{Z}$ be coprime to $p$ and let $g$ be a generator of $(\Zmod{p})^\times$. If $(a/p) = 1$ then $[a]_p = g^{2i}$ for some $i\in\mathbf{Z}$.
+\[a^\frac{p-1}{2} = (g^{2i})^\frac{p-1}{2} = (g^{p-1})^i = 1.\]
+
+Conversely, suppose $a^\frac{p-1}{2} = 1$ and take $j$ such that $a = g^j$. Then $g^{j\cdot\frac{p-1}{2}} = 1$, but the order of $g$ is $p-1$, so
+\[\exists k,\ k(p-1)=j\cdot\frac{p-1}{2}\implies 2k=j.\]
+Then $a = g^{2k} = (g^k)^2$ and $(a/p) = 1$. The cases $(a/p) = -1$ or 0 are immediate.
+\end{proof}
+
+\end{document}
