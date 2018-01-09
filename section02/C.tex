@@ -1,0 +1,25 @@
+Two primitive quadratic forms are in the same \emph{genus} if they represent the same values in $(\Zmod{D})^*$. Since equivalent forms represent the same numbers, we can consider reduced forms.
+
+When $D=-20$, we are interested in $(-20/p) = (-5/p)$. Since $-5\equiv 3\bmod 4$,
+\[\jacobi{-5}{p}=(-1)^\frac{p-1}{2}\jacobi{p}{5}\]
+and the only nonzero squares modulo 5 are $1^2=1$, $2^2=4$, $3^2=4$, $4^2=1$. Both factors are 1 when $p\equiv 1, 9\bmod 20$ and both factors are $-1$ when $p\equiv 3, 7\bmod 20$. Surely it is a coincidence that this is the same separation of $\ker(\chi)$ given by the two genera, $x^2+5y^2$ and $2x^2+2xy+3y^2$.
+
+It's not the case that each genus only has one representative; for instance, when $D=-56$, $x^2+14y^2$ and $2x^2+7y^2$ both represent $1, 9, 15, 23, 25, 39$ in $(\Zmod{56})^*$. All of these numbers are represented by both:
+\begin{align*}
+(1)^2 + 14(0)^2 &\equiv 2(5)^2+7(1)^2 &\equiv 1\bmod 56\\
+(3)^2 + 14(0)^2 &\equiv 2(1)^2+7(1)^2 &\equiv 9\bmod 56\\
+(1)^2 + 14(1)^2 &\equiv 2(2)^2+7(1)^2 &\equiv 15\bmod 56\\
+(3)^2 + 14(1)^2 &\equiv 2(8)^2+7(5)^2 &\equiv 23\bmod 56\\
+(5)^2 + 14(0)^2 &\equiv 2(3)^2+7(1)^2 &\equiv 25\bmod 56\\
+(5)^2 + 14(1)^2 &\equiv 2(4)^2+7(1)^2 &\equiv 39\bmod 56.
+\end{align*}
+It's not clear to me at this point that this should be the case. The sets of represented integers will not be identical since the forms are not equivalent, but do inequivalent forms of the same genus represent the exact same numbers \emph{when restricted to $(\Zmod{D})^*$?} I suspect this question will be answered as I learn genus theory.
+
+If $m$ is an integer with $\gcd(m, D)=1$ and $m$ is represented by a form of discriminant $D$, we can write $m=d^2m^\prime$ where $m^\prime$ is properly represented by the same form. There exist $x,y$ such that $ax^2+bxy+cy^2=m$. Let $d$ be $gcd(x,y)$ and $x^\prime$ and $y^\prime$ be $x/d$ and $y/d$, respectively. Then $gcd(x^\prime,y^\prime)=1$ and $f(x^\prime,y^\prime)\cdot d^2= a(dx^\prime)^2+b(dx)(dy)+c(dy^\prime)^2= ax^2 + bxy+cy^2=m$.
+
+Suppose we have an integer $m$ where $\gcd(m,D)=1$ and $m=f(a,b)$ for some quadratic form $f$ of discriminant $D$. Let $d$ be the greatest common divisor of $a$ and $b$. Then $\chi([m])=\chi([d^2f(a/d, b/d)])=\chi([f(a/d, b/d)]).$
+
+Write denote $f(a/d, b/d)$ by $m^\prime$. Since $a/d$ and $b/d$ are relatively prime, use 2.3 to find a form $g$ such that $g$ is properly equivalent to $f$ and
+\[g(x,y)=m^\prime x^2+sxy+ty^2\]
+for some integers $s,t$. Then $D=s^2-m^\prime t$, and
+\[\chi([m^\prime])=\jacobi{D}{m^\prime}=\jacobi{s^2-m^\prime t}{m^\prime}.\]
