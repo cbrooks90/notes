@@ -9,7 +9,7 @@ It's not the case that each genus only has one representative; for instance, whe
 (1)^2 + 14(0)^2 &\equiv 2(5)^2+7(1)^2 &\equiv 1\bmod 56\\
 (3)^2 + 14(0)^2 &\equiv 2(1)^2+7(1)^2 &\equiv 9\bmod 56\\
 (1)^2 + 14(1)^2 &\equiv 2(2)^2+7(1)^2 &\equiv 15\bmod 56\\
-(3)^2 + 14(1)^2 &\equiv 2(8)^2+7(5)^2 &\equiv 23\bmod 56\\
+(3)^2 + 14(1)^2 &\equiv 2(8)^2+7(3)^2 &\equiv 23\bmod 56\\
 (5)^2 + 14(0)^2 &\equiv 2(3)^2+7(1)^2 &\equiv 25\bmod 56\\
 (5)^2 + 14(1)^2 &\equiv 2(4)^2+7(1)^2 &\equiv 39\bmod 56.
 \end{align*}
@@ -54,3 +54,11 @@ is a coset of $H$ in $\ker(\chi)$.
 After this lemma it is clear that the notion of genus is well-defined: To any form $f(x,y)$ we can associate some coset $aH\subset\ker(\chi)$, i.e
 \[\{[m]:\exists r,s\in\mathbf{Z}, f(r,s)=m\text{ and }\gcd(m,D)=1\}=aH\text{ for some }a\in\ker(\chi).\]
 Then a \emph{genus} of discriminant $D$ is the set of all forms of discriminant $D$ which correspond to the same coset of $\ker(\chi)$.
+
+\section{An algorithm}
+
+%Insert algorithm here
+
+It should be clear that we are not finished with the main problem in the book, even if we disregard the fact that we have 13 sections remaining. Let's look at $D=-56$ again, specifically the genus containing $x^2+14y^2$ and $2x^2+7y^2$. We know from lemma 2.24 and the consequent algorithm that \emph{every} equivalence class $1, 9, 15, 23, 25, 29$ in $(\Zmod{56})^*$ is represented by \emph{both} forms. It is impossible to partition these classes further to distinguish the two forms.
+
+Any further refinement has to happen within the individual classes. For instance, we have the statement $p=1\bmod 23\implies p$ is of the form $x^2+14y^2$ OR $p$ is of the form $2x^2+7y^2$. The prime 23 is represented by the first and not the second, but the prime 191 ($\equiv 23\bmod 56$) is represented by the second and not the first.
