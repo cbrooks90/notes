@@ -13,13 +13,44 @@ It's not the case that each genus only has one representative; for instance, whe
 (5)^2 + 14(0)^2 &\equiv 2(3)^2+7(1)^2 &\equiv 25\bmod 56\\
 (5)^2 + 14(1)^2 &\equiv 2(4)^2+7(1)^2 &\equiv 39\bmod 56.
 \end{align*}
-It's not clear to me at this point that this should be the case. The sets of represented integers will not be identical since the forms are not equivalent, but do inequivalent forms of the same genus represent the exact same numbers \emph{when restricted to $(\Zmod{D})^*$?} I suspect this question will be answered as I learn genus theory.
+It's not clear to me at this point that this should be the case. The sets of represented integers will not be identical since the forms are not equivalent. For example, 2 is represented by $2x^2+7y^2$ but not $x^2+14y^2$.
 
-If $m$ is an integer with $\gcd(m, D)=1$ and $m$ is represented by a form of discriminant $D$, we can write $m=d^2m^\prime$ where $m^\prime$ is properly represented by the same form. There exist $x,y$ such that $ax^2+bxy+cy^2=m$. Let $d$ be $gcd(x,y)$ and $x^\prime$ and $y^\prime$ be $x/d$ and $y/d$, respectively. Then $gcd(x^\prime,y^\prime)=1$ and $f(x^\prime,y^\prime)\cdot d^2= a(dx^\prime)^2+b(dx)(dy)+c(dy^\prime)^2= ax^2 + bxy+cy^2=m$.
+My question is whether or not inequivalent forms of the same genus represent the exact same numbers \emph{when restricted to $(\Zmod{D})^*$}. It turns out this question is answered by Lemma 2.24.
 
-Suppose we have an integer $m$ where $\gcd(m,D)=1$ and $m=f(a,b)$ for some quadratic form $f$ of discriminant $D$. Let $d$ be the greatest common divisor of $a$ and $b$. Then $\chi([m])=\chi([d^2f(a/d, b/d)])=\chi([f(a/d, b/d)]).$
+\section{Lemma 2.4}
 
-Write denote $f(a/d, b/d)$ by $m^\prime$. Since $a/d$ and $b/d$ are relatively prime, use 2.3 to find a form $g$ such that $g$ is properly equivalent to $f$ and
-\[g(x,y)=m^\prime x^2+sxy+ty^2\]
-for some integers $s,t$. Then $D=s^2-m^\prime t$, and
-\[\chi([m^\prime])=\jacobi{D}{m^\prime}=\jacobi{s^2-m^\prime t}{m^\prime}.\]
+Let $D\equiv 0,1\bmod 4$ and $\chi$ be the homomorphism described in section 1C.
+
+We first show that if $m$ is represented by any form of discriminant $D$ and $\gcd(m,D)=1$, then $\chi([m])=1$, i.e. $[m]\in\ker(\chi)$. Suppose $m=f(r,s)$ where $f$ has discriminant $D$. Let $d$ be the greatest common divisor of $r$ and $s$. Then $\chi([m])=\chi([d^2f(r/d, s/d)])=\chi([f(r/d, s/d)]).$ Denote $f(r/d, s/d)$ by $m^\prime$. Then use lemma 2.3 to find $g(x,y)=m^\prime x^2+bxy+cy^2$ properly equivalent to $f$.
+\begin{description}
+  \item [$m^\prime$ even:]
+    Since $\gcd(m, D)=1$, we know $D$ is odd, so $D\equiv 1\bmod 4$. But $D=b^2-4cm^\prime$, so $b$ must be odd, thus $b^2\equiv 1\bmod 8$ and finally $D\equiv 1\bmod 8$.
+
+    To finish this case, we write $m\prime=2^kn$ where $n$ is odd. We showed in section 1 that $\chi([2])=1$ when $D\equiv 1\bmod 8$, so
+    \[\chi([m])=\chi([m^\prime])=\chi([2])^k\chi([n])=\chi([n]).\]
+    This must be 1 since $D=b^2-2^{k+2}cn\equiv b^2\bmod n$.
+
+  \item [$m^\prime$ odd:]
+    Since $m^\prime$ is odd and positive, we can use the $m^\prime$ directly to compute $\chi([m^\prime])$:
+    \[\chi([m^\prime])=\jacobi{D}{m^\prime}=\jacobi{b^2-4cm^\prime}{m^\prime}=\jacobi{b}{m^\prime}^2=1.\]
+\end{description}
+
+Next, let $f$ be the principal form of discriminant $D$ and consider the set
+\[H:=\{[m]: m\text{ is represented by }f(x,y),\ \gcd(m, D)=1\}.\]
+We just showed that $H$ must be a subset of $\ker(\chi)$. We show now that $H$ is a subgroup of $\ker(\chi)$.
+\begin{description}
+  \item [$D\equiv 0\bmod 4$:]
+  \item [$D\equiv 1\bmod 4$:]
+\end{description}
+
+Finally, we need to show that for \emph{any} form $f$ of discriminant $D$, the set
+\[\{[m]: m\text{ is represented by }f(x,y),\ \gcd(m, D)=1\}\]
+is a coset of $H$ in $\ker(\chi)$.
+\begin{description}
+  \item [$D\equiv 0\bmod 4$:]
+  \item [$D\equiv 1\bmod 4$:]
+\end{description}
+
+After this lemma it is clear that the notion of genus is well-defined: To any form $f(x,y)$ we can associate some coset $aH\subset\ker(\chi)$, i.e
+\[\{[m]:\exists r,s\in\mathbf{Z}, f(r,s)=m\text{ and }\gcd(m,D)=1\}=aH\text{ for some }a\in\ker(\chi).\]
+Then a \emph{genus} of discriminant $D$ is the set of all forms of discriminant $D$ which correspond to the same coset of $\ker(\chi)$.
