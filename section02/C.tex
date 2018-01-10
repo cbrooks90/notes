@@ -40,15 +40,42 @@ Next, let $f$ be the principal form of discriminant $D$ and consider the set
 We just showed that $H$ must be a subset of $\ker(\chi)$. We show now that $H$ is a subgroup of $\ker(\chi)$.
 \begin{description}
   \item [$D\equiv 0\bmod 4$:]
+  Write $D=-4n$ and take $m_1, m_2\in H$, where $m_1=a^2+nb^2$ and $m_2=c^2+nd^2$. Then
+  \[[m_1][m_2]=[m_1m_2]=[(a^2+nb^2)(c^2+nd^2)]=[(ac+nbd)^2+n(ad-bc)^2]$\]
+  which shows that $[m_1][m_2]\in H$ and so $H$ is a subgroup of $\ker(\chi)$.
+
   \item [$D\equiv 1\bmod 4$:]
+  For any $m$ with $[m]\in H$, we have $m=a^2+ab+\frac{1-D}{4}b^2$ for some integers $a, b$. Then
+  \begin{align*}
+    4m&=4a^2+4ab+(1-D)b^2\\
+      &\equiv 4a^2+4ab+b^2\bmod D\\
+      &\equiv (2a+b)^2\bmod D\\
+     m&\equiv (a+2^{-1}b)^2\bmod D.\\
+  \end{align*}
+  On the other hand, if $m\equiv c^2\bmod D$ for some $c$, then $f(0, 2c)=\frac{1-D}{4}\cdot 4c^2=(1-D)c^2\equiv c^2\equiv m\bmod D$, so $H$ is precisely the subgroup of squares in $(\Zmod{D})^*$.
 \end{description}
 
 Finally, we need to show that for \emph{any} form $f$ of discriminant $D$, the set
 \[\{[m]: m\text{ is represented by }f(x,y),\ \gcd(m, D)=1\}\]
-is a coset of $H$ in $\ker(\chi)$.
+is a coset of $H$ in $\ker(\chi)$. ((PUT EXERCISE 2.18 HERE)), then write $g(x,y)=ax^2+bxy+cy^2$ where $g$ is properly equivalent to $f$ and $gcd(a,D)=1$ (so that $a\in(\Zmod{D})^*$.) Then let $u,v$ be integers such that $g(u,v)=m$.
 \begin{description}
   \item [$D\equiv 0\bmod 4$:]
+  Writing $D=-4n$, we know $b$ is even so $B=b/2$ is an integer. We have
+  \begin{align*}
+    4am&=(2au+bv)^2+4nv^2\\
+     am&=(au+Bv)^2+nv^2\in H,
+  \end{align*}
+  so $[m]$ is in the coset $[a]^{-1}H$. Conversely, if $[m]\in[a]^{-1}H$ for some $a\in\ker(\chi)$, then $am\equiv z^2+nw^2\bmod 4n$ for some $z$ and $w$. Then the above formula shows that $f(a^{-1}(z-Bw), w)\equiv m\bmod D$, so $[m]$ is in our set.
+
   \item [$D\equiv 1\bmod 4$:]
+  Writing $D=-4n+1$, we know that $b$ is odd, so $b=2B+1$ for some integer $B$. Use the same argument in the previous case, but this time with the identity
+  \begin{align*}
+    4am&=(2au+bv)^2+(4n-1)y^2\\
+       &=(2au+(2B+1)v)^2+4nv^2-v^2\\
+       &=4a^2u^2+4B^2v^2+4Bv^2+4abuv+4nv^2\\
+     am&=a^2u^2+B^2v^2+Bv^2+abuv+nv^2\\
+       &=(au+Bv)^2+(au+Bv)v+nv^2\in H.
+  \end{align*}
 \end{description}
 
 After this lemma it is clear that the notion of genus is well-defined: To any form $f(x,y)$ we can associate some coset $aH\subset\ker(\chi)$, i.e
