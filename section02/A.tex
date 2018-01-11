@@ -1,97 +1,99 @@
-f(x,y) = ax^2 + bxy + cy^2
+\input{../preamble.tex}
+\begin{document}
+\section{Basic definitions}
+Quadratic forms $f(x,y)$ and $g(x,y)$ are equivalent if there exist integers $p,q,r,s$ such that
+\begin{itemize}
+\item $f(x,y) = g(px+qy,rx+sy)$
+\item $ps-qr = \pm 1$
+\end{itemize}
 
-Primitive means gcd(a,b,c)=1
-m is represented by f(x,y) means
-  m=f(x,y) for integers x,y
-m is properly represented if gcd(x,y)=1.
+Equivalence of forms is an equivalence relation: We get reflexivity via the identity matrix, symmetric via the inverse matrix, and transitivity via the matrix product. These work because $\det(id) = 1$, $\det(A^{-1}) = \det(A)$ if $\det(A) = \pm 1$, and $\det(AB)=\det(A)\det(B)$.
 
-f(x,y) and g(x,y) are equivalent if there exist
-p,q,r,s such that
- - f(x,y) = g(px+qy,rx+sy)
- - ps-qr = +-1
+The following may be useful for future computations: If $f(x,y) = g(px+qy,rx+sy)$, then
+\[f\left(\frac{sx-qy}{ps-qr}, \frac{-rx+py}{ps-qr}\right) = g(x,y).\]
+In fact, we can explicitly write the coefficients of $g$. If $f(x,y)=ax^2+bxy+cy^2$, then (keeping in mind that $D^2=1$)
+\begin{align*}
+g(px+qy, rx+sy) =& f(x,y)\\
+g(x,y) =& f((sx-qy)/D, (-rx+py)/D)\\
+g(x,y) =& (as^2-brs+cr^2)x^2\\
+        & + (b(ps+qr)-2aqs-2cpr)xy\\
+        & + (aq^2-bpq+cp^2)y^2.\\
+\end{align*}
 
-This means the matrix (p q, r s) is in GL(2,Z).
-Equivalence of forms is an equivalence relation:
+Equivalent forms represent the same numbers. Suppose $f \sim g$ and $\exists a,b$ such that $m=f(a,b)$. Then $m=g(pa+qb, ra+sb)$ and vice-versa (using the inverse). A proper representation is one such that $m=f(a,b)$ and $\gcd(a,b)=1$; otherwise, a representation is improper.
 
-Reflexivity via the identity matrix, symmetric via inverse matrix, transitivity via matrix product. These work because det(id) = 1, det(A^-1) = det(A) if det(A) = +-1, and det(AB)=det(A)det(B).
+Is it possible to get an improper representation from a proper one? No. Suppose $f \sim g$ via integers $p,q,r,s$ with $pq-rs=\pm 1$, and that $m = g(pa+qb, ra+sb) = f(a,b)$ with $\gcd(a,b)=1$. We will show that $\gcd(pa+qb, ra+sb)=1$.
 
-This may be useful: If f(x,y) = g(px+qy,rx+sy), then f((sx-qy)/(ps-qr), (-rx+py)/(ps-qr)) = g(x,y).
-
-In fact, we can explicitly write the coefficients of g in this case. If f(x,y)=ax^2+bxy+cy^2, then
-  g(px+qy, rx+sy) = f(x,y), or equivalently
-  g(x,y) = f((sx-qy)/D, (-rx+py)/D) (D is the discriminant)
-  g(x,y) = (as^2-brs+cr^2)x^2
-           + (b(ps+qr)-2aqs-2cpr)xy
-           + (aq^2-bpq+cp^2)y^2 (since D^2=1).
-
-Equivalent forms represent the same numbers. Suppose f ~ g and exist a,b such that m=f(a,b). Then m=g(pa+qb, ra+sb) and vice versa (using the inverse). A proper representation is one such that m=f(a,b) and gcd(a,b)=1; A representation is improper if gcd(a,b)>1.
-
-Is it possible to get an improper representation from a proper one? No. Suppose f ~ g via integers p,q,r,s with pq-rs=+-1, and that m = g(pa+qb, ra+sb) = f(a,b) with gcd(a,b)=1. We will show that gcd(pa+qb, ra+sb)=1.
-
-We have s(pa+qb)-q(ra+sb)=+-a and
-       -r(pa+qb)+p(ra+sb)=+-b.
-Since gcd(a,b)=1, there are integers n,m such that n(+-a)+m(+-b)=1, where the signs match the equations we just wrote. Then after substituting,
-        n(s(pa+qb)-q(ra+sb)) + m(-r(pa+qb)+p(ra+sb)) = 1,
+We have
+\begin{align*}
+s(pa+qb)-q(ra+sb)&=\pm a\\
+-r(pa+qb)+p(ra+sb)&=\pm b.
+\end{align*}
+Since $\gcd(a,b)=1$, there are integers $n,m$ such that $n(\pm a)+m(\mp b)=1$, where the signs match the equations we just wrote. Then after substituting,
+\[n(s(pa+qb)-q(ra+sb)) + m(-r(pa+qb)+p(ra+sb)) = 1,\]
 which can be rearranged to
-        (ns-mr)(pa+qb) + (mp-nq)(ra+sb) = 1.
-This is only possible if gcd(pa+qb, ra+sb)=1.
+\[(ns-mr)(pa+qb) + (mp-nq)(ra+sb) = 1.\]
+This is only possible if $\gcd(pa+qb, ra+sb)=1$.
 
-Since this argument is the same with the inverse transformation, we have that the set of integers properly represented by f is an equivalence invariant.
+Since this argument is the same with the inverse transformation, we have that the set of integers properly represented by $f$ is an equivalence invariant.
 
-Another such invariant is the discriminant.
+Another such invariant is the discriminant. Suppose $f(x,y)=ax^2+bxy+cy^2$ has discriminant $D = b^2-4ac$. Then if $g \sim f$ via $p,q,r,s$, as shown above we can write
+\begin{align*}
+g(x,y) =& (as^2-brs+cr^2)x^2\\
+        & + (b(ps+qr)-2aqs-2cpr)xy\\
+        & + (aq^2-bpq+cp^2)y^2\\
+\intertext{which has discriminant}
+D'= &(b(ps+qr)-2(aqs+cpr))^2 - 4(as^2-brs+cr^2)(aq^2-bpq+cp^2)\\
+  = & (bqr)^2 + (bps)^2 + 2b^2pqrs\\
+    & + 4(aqs)^2 + 4(cpr)^2 + 8acpqrs\\
+    & - 4abrsq^2 - 4bcrsp^2 - 4abpqs^2 -4bcpqr^2\\
+    & -4(aqs)^2 - 4b^2pqrs - 4(cpr)^2\\
+    & + 4abpqs^2 + 4abq^2rs\\
+    & - 4acp^2s^2 - 4acq^2r^2\\
+    & + 4bcp^2rs + 4bcpqr^2\\
+\intertext{Combining,}
+D' = &(bps)^2 + (bqr)^2 + 2b^2pqrs - 4b^2pqrs\\
+     & + 4(aqs)^2 - 4(aqs)^2\\
+     & + 4(cpr)^2 - 4(cpr)^2\\
+     & - 4abpqs^2 + 4abpqs^2\\
+     & - 4bcpqr^2 + 4bcpqr^2\\
+     & - 4abq^2rs + 4abq^2rs\\
+     & - 4bcp^2rs + 4bcp^2rs\\
+     & + 8acpqrs\\
+     & - 4acp^2s^2\\
+     & - 4acq^2r^2\\
+   = &(bps)^2 + (bqr)^2 - 2b^2pqrs\\
+     & + 8acpqrs - 4acp^2s^2 - 4acq^2r^2\\
+   = &b^2((ps)^2 + (qr)^2 - 2pqrs)\\
+     & - 4ac((ps)^2 + (qr)^2 - 2pqrs)\\
+   = &(b^2 - 4ac)((ps)^2 + (qr)^2 - 2pqrs)\\
+   = &(b^2 - 4ac)(ps - qr)^2\\
+   = &D(ps - qr)^2 = D.\\
+\end{align*}
 
-Suppose f(x,y)=ax^2+bxy+cy^2 has discriminant D = b^2-4ac. Then if g ~ f via p,q,r,s, as shown above we can write
-  g(x,y) = (as^2-brs+cr^2)x^2
-           + (b(ps+qr)-2aqs-2cpr)xy
-           + (aq^2-bpq+cp^2)y^2
-which has discriminant
-D'=(b(ps+qr)-2(aqs+cpr))^2 - 4(as^2-brs+cr^2)(aq^2-bpq+cp^2).
-  = (bqr)^2 + (bps)^2 + 2b^2pqrs
-     + 4(aqs)^2 + 4(cpr)^2 + 8acpqrs
-     - 4abrsq^2 - 4bcrsp^2 - 4abpqs^2 -4bcpqr^2
+With these notions we can begin to see the relation to $x^2+ny^2$ problem (the bridge being quadratic residues):
 
-     -4(aqs)^2 - 4b^2pqrs - 4(cpr)^2
-      + 4abpqs^2 + 4abq^2rs
-      - 4acp^2s^2 - 4acq^2r^2
-      + 4bcp^2rs + 4bcpqr^2
+If $D\equiv 0,1\bmod 4$ and $m$ is an odd integer with $\gcd(D, m)=1$, then there is a primitive quadratic form of discriminant $D$ properly representing $m\iff D$ is a quadratic residue mod $m$.
 
-Combining,
-D' = (bps)^2 + (bqr)^2 + 2b^2pqrs - 4b^2pqrs
-      + 4(aqs)^2 - 4(aqs)^2
-      + 4(cpr)^2 - 4(cpr)^2
-      - 4abpqs^2 + 4abpqs^2
-      - 4bcpqr^2 + 4bcpqr^2
-      - 4abq^2rs + 4abq^2rs
-      - 4bcp^2rs + 4bcp^2rs
-      + 8acpqrs
-      - 4acp^2s^2
-      - 4acq^2r^2
-   = (bps)^2 + (bqr)^2 - 2b^2pqrs
-      + 8acpqrs - 4acp^2s^2 - 4acq^2r^2
-   = b^2((ps)^2 + (qr)^2 - 2pqrs)
-      - 4ac((ps)^2 + (qr)^2 - 2pqrs)
-   = (b^2 - 4ac)((ps)^2 + (qr)^2 - 2pqrs)
-   = (b^2 - 4ac)(ps - qr)^2
-   = D(ps - qr)^2 = D.
+((I think Lemma 2.3 should be inlined, since it only appears in one other place and is fairly trivial.))
 
-With these notions we can begin to see the relation to x^2+ny^2 problem (the bridge being quadratic residues):
+Suppose $f(p,q)=m=ap^2+bpq+cq^2$ with $f$ primitive and $\gcd(p,q)=1$. There exists $s,t$ such that $sp-tq=1$. Then
+\begin{align*}
+f(px+ty, qx+sy)=&a(px+ty)^2+b(px+ty)(qx+sy)+c(qx+sy)^2\\
+ =& x^2(ap^2+bpq+cq^2)\\
+ &+ xy(2apt+bps+bqt+2cqs)\\
+ &+ y^2(at^2+bst+cs^2)\\
+ =& mx^2 + b^\prime xy + f(t,s)y^2.
+\end{align*}
+Then $D=(b^\prime)^2 - 4mf(t,s)^2$, so $D$ is a quadratic residue modulo $m$. I'm not sure about $\gcd(D,m)=1$ here. ((If $\gcd(D,m)$ is not 1 is it impossible?))
 
-If D=0,1 mod 4 and m is an odd integer with gcd(D, m)=1, then there is a primitive quadratic form of discriminant D properly representing m <=> D is a quadratic residue mod m.
-
-I think Lemma 2.3 should be inlined, since it only appears in one other place and is fairly trivial.
-
-Suppose f(p,q)=m=ap^2+bpq+cq^2 with f primitive and gcd(p,q)=1. There exists s,t such that sp-tq=1. Then f(px+ty, qx+sy)=a(px+ty)^2+b(px+ty)(qx+sy)+c(qx+sy)^2
- = x^2(ap^2+bpq+cq^2) + xy(2apt+bps+bqt+2cqs) + y^2(at^2+bst+cs^2)
- = mx^2 + b'xy + f(t,s)y^2
-Then D=(b')^2 - 4mf(t,s)^2, so D is a quadratic residue mod m. I'm not sure about gcd(D,m)=1 here. If gcd(D,m) is not 1 is it impossible? 25 = 0^2 mod 5 and
-
-Conversely, if D is a QR mod m, then for some i, D=i^2 mod m. This is where we require D to be 0 or 1 mod 4, since otherwise D cannot be a discriminant. If D=i mod 2 then D-i^2 = 0 mod 4. If D \neq i mod 2 then D-(i+m)^2 = 0 mod 4. Let j be i or i+m so that D=j^2 mod 4 in either case. Since gcd(m,4)=1, we can find c so that D=j^2-4cm. Then mx^2+jxy+cy^2 does the job. Think about primitiveness of both directions.
+Conversely, if $D$ is a quadratic residue modulo $m$, then for some $i, D\equiv i^2\bmod m$. This is where we require $D$ to be 0 or $1\bmod 4$, since otherwise $D$ cannot be a discriminant. If $D\equiv i\bmod 2$ then $D-i^2\equiv 0\bmod 4$. If $D \not\equiv i\bmod 2$ then $D-(i+m)^2\equiv 0\bmod 4$. Let $j$ be $i$ or $i+m$ so that $D\equiv j^2\bmod 4$ in either case. Since $\gcd(m,4)=1$, we can find $c$ so that $D=j^2-4cm$. Then $mx^2+jxy+cy^2$ does the job. ((Think about primitiveness of both directions.))
 
 As we've done previously, we consider discriminants which are multiples of 4 since we don't lose anything and we can relate this lemma to our previous work. This is made explicit in the corollary:
 
-If $m$ is a positive, odd integer, there is a primitive quadratic form of discriminant $-4n$ representing $m \iff (-4n/m)=1$. Note that we no longer require the representation to be proper. Is it impossible to keep proper representation?
+If $m$ is a positive, odd integer, there is a primitive quadratic form of discriminant $-4n$ representing $m \iff (-4n/m)=1$. Note that we no longer require the representation to be proper. ((Is it impossible to keep proper representation?))
 
-Reduced positive definite quadratic forms
+\section{Reduced positive definite quadratic forms}
 
 A primitive positive definite form $ax^2+bxy+cy^2$ is \emph{reduced} if $|b|\leq a\leq c$; when either is an equality, we also require $b\geq 0$. We want positive definiteness because for any positive definite quadratic form, there is a unique reduced form properly equivalent to it.
 
@@ -111,5 +113,7 @@ $D<0\implies a\neq 0$. If $a>0$, $f(x,y)\geq 0\forall x,y\in\mathbf{Z}$. Can $f(
 
 $0 = (2ax+by)^2 + (-D)y^2$
 which means $y=0$ and $(2ax)^2 = 0$, so $x=0$. If we take the definitions of ``represent'' and ``properly represent`` literally, we can exclude zero by saying
-\[D<0, a>0\implies f(x,y) > 0\forall x,y\in\mathbf{Z}, \gcd(x,y)=1\]
+\[D<0\text{ and }a>0\implies f(x,y) > 0\ \forall x,y\in\mathbf{Z}, \gcd(x,y)=1\]
 or equivalently: If $D<0$ and $a>0$, $m>0$ for all $m$ properly represented by $f$. (This requires us to remember that $\gcd(0,0)=0$ since ``greatest'' common divisor refers to maximality in the divisibility lattice.)
+
+\end{document}
