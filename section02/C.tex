@@ -1,10 +1,16 @@
+\input{../preamble.tex}
+\begin{document}
+\section{The genus of a quadratic form}
+
 Two primitive quadratic forms are in the same \emph{genus} if they represent the same values in $(\Zmod{D})^*$. Since equivalent forms represent the same numbers, we can consider reduced forms.
 
 When $D=-20$, we are interested in $(-20/p) = (-5/p)$. Since $-5\equiv 3\bmod 4$,
 \[\jacobi{-5}{p}=(-1)^\frac{p-1}{2}\jacobi{p}{5}\]
-and the only nonzero squares modulo 5 are $1^2=1$, $2^2=4$, $3^2=4$, $4^2=1$. Both factors are 1 when $p\equiv 1, 9\bmod 20$ and both factors are $-1$ when $p\equiv 3, 7\bmod 20$. Surely it is a coincidence that this is the same separation of $\ker(\chi)$ given by the two genera, $x^2+5y^2$ and $2x^2+2xy+3y^2$.
+and the only nonzero squares modulo 5 are $1^2=1$, $2^2=4$, $3^2=4$, $4^2=1$. Both factors are 1 when $p\equiv 1, 9\bmod 20$ and both factors are $-1$ when $p\equiv 3, 7\bmod 20$. ((Surely it is a coincidence that this is the same separation of $\ker(\chi)$ given by the two genera, $x^2+5y^2$ and $2x^2+2xy+3y^2$.))
 
-It's not the case that each genus only has one representative; for instance, when $D=-56$, $x^2+14y^2$ and $2x^2+7y^2$ both represent $1, 9, 15, 23, 25, 39$ in $(\Zmod{56})^*$. All of these numbers are represented by both:
+It's not the case that each genus only has one representative; for instance, when $D=-56$, $x^2+14y^2$ and $2x^2+7y^2$ both represent
+\[1, 9, 15, 23, 25, 39\in (\Zmod{56})^*.\]
+All of these numbers are represented by both forms:
 \begin{align*}
 (1)^2 + 14(0)^2 &\equiv 2(5)^2+7(1)^2 &\equiv 1\bmod 56\\
 (3)^2 + 14(0)^2 &\equiv 2(1)^2+7(1)^2 &\equiv 9\bmod 56\\
@@ -13,20 +19,21 @@ It's not the case that each genus only has one representative; for instance, whe
 (5)^2 + 14(0)^2 &\equiv 2(3)^2+7(1)^2 &\equiv 25\bmod 56\\
 (5)^2 + 14(1)^2 &\equiv 2(4)^2+7(1)^2 &\equiv 39\bmod 56.
 \end{align*}
-It's not clear to me at this point that this should be the case. The sets of represented integers will not be identical since the forms are not equivalent. For example, 2 is represented by $2x^2+7y^2$ but not $x^2+14y^2$.
+At this point it's not clear to me that this should always be the case. The sets of represented integers (regardless of coprimality with $D$) will not be identical since the forms are not equivalent. For example, 2 is represented by $2x^2+7y^2$ but not $x^2+14y^2$.
 
 My question is whether or not inequivalent forms of the same genus represent the exact same numbers \emph{when restricted to $(\Zmod{D})^*$}. It turns out this question is answered by Lemma 2.24.
 
-\section{Lemma 2.4}
+\section{Lemma 2.24}
 
 Let $D\equiv 0,1\bmod 4$ and $\chi$ be the homomorphism described in section 1C.
 
-We first show that if $m$ is represented by any form of discriminant $D$ and $\gcd(m,D)=1$, then $\chi([m])=1$, i.e. $[m]\in\ker(\chi)$. Suppose $m=f(r,s)$ where $f$ has discriminant $D$. Let $d$ be the greatest common divisor of $r$ and $s$. Then $\chi([m])=\chi([d^2f(r/d, s/d)])=\chi([f(r/d, s/d)]).$ Denote $f(r/d, s/d)$ by $m^\prime$. Then use lemma 2.3 to find $g(x,y)=m^\prime x^2+bxy+cy^2$ properly equivalent to $f$.
+\begin{itemize}
+\item We first show that if $m$ is represented by any form of discriminant $D$ and $\gcd(m,D)=1$, then $\chi([m])=1$, i.e. $[m]\in\ker(\chi)$. Suppose $m=f(r,s)$ where $f$ has discriminant $D$. Let $d$ be the greatest common divisor of $r$ and $s$. Then $\chi([m])=\chi([d^2f(r/d, s/d)])=\chi([f(r/d, s/d)]).$ Denote $f(r/d, s/d)$ by $m^\prime$. Then use lemma 2.3 to find $g(x,y)=m^\prime x^2+bxy+cy^2$ properly equivalent to $f$.
 \begin{description}
   \item [$m^\prime$ even:]
     Since $\gcd(m, D)=1$, we know $D$ is odd, so $D\equiv 1\bmod 4$. But $D=b^2-4cm^\prime$, so $b$ must be odd, thus $b^2\equiv 1\bmod 8$ and finally $D\equiv 1\bmod 8$.
 
-    To finish this case, we write $m\prime=2^kn$ where $n$ is odd. We showed in section 1 that $\chi([2])=1$ when $D\equiv 1\bmod 8$, so
+    To finish this case, we write $m^\prime=2^kn$ where $n$ is odd. We showed in section 1 that $\chi([2])=1$ when $D\equiv 1\bmod 8$, so
     \[\chi([m])=\chi([m^\prime])=\chi([2])^k\chi([n])=\chi([n]).\]
     This must be 1 since $D=b^2-2^{k+2}cn\equiv b^2\bmod n$.
 
@@ -35,13 +42,16 @@ We first show that if $m$ is represented by any form of discriminant $D$ and $\g
     \[\chi([m^\prime])=\jacobi{D}{m^\prime}=\jacobi{b^2-4cm^\prime}{m^\prime}=\jacobi{b}{m^\prime}^2=1.\]
 \end{description}
 
-Next, let $f$ be the principal form of discriminant $D$ and consider the set
+\item Next, let $f$ be the principal form of discriminant $D$ and consider the set
 \[H:=\{[m]: m\text{ is represented by }f(x,y),\ \gcd(m, D)=1\}.\]
 We just showed that $H$ must be a subset of $\ker(\chi)$. We show now that $H$ is a subgroup of $\ker(\chi)$.
 \begin{description}
   \item [$D\equiv 0\bmod 4$:]
   Write $D=-4n$ and take $m_1, m_2\in H$, where $m_1=a^2+nb^2$ and $m_2=c^2+nd^2$. Then
-  \[[m_1][m_2]=[m_1m_2]=[(a^2+nb^2)(c^2+nd^2)]=[(ac+nbd)^2+n(ad-bc)^2]$\]
+  \begin{align*}
+  [m_1][m_2]=[m_1m_2]&=[(a^2+nb^2)(c^2+nd^2)]\\
+                     &=[(ac+nbd)^2+n(ad-bc)^2]
+  \end{align*}
   which shows that $[m_1][m_2]\in H$ and so $H$ is a subgroup of $\ker(\chi)$.
 
   \item [$D\equiv 1\bmod 4$:]
@@ -50,12 +60,19 @@ We just showed that $H$ must be a subset of $\ker(\chi)$. We show now that $H$ i
     4m&=4a^2+4ab+(1-D)b^2\\
       &\equiv 4a^2+4ab+b^2\bmod D\\
       &\equiv (2a+b)^2\bmod D\\
-     m&\equiv (a+2^{-1}b)^2\bmod D.\\
+     m&\equiv (a+2^{-1}b)^2\bmod D.
   \end{align*}
-  On the other hand, if $m\equiv c^2\bmod D$ for some $c$, then $f(0, 2c)=\frac{1-D}{4}\cdot 4c^2=(1-D)c^2\equiv c^2\equiv m\bmod D$, so $H$ is precisely the subgroup of squares in $(\Zmod{D})^*$.
+  On the other hand, if $m\equiv c^2\bmod D$ for some $c$, then
+  \begin{align*}
+  f(0, 2c)&=\frac{1-D}{4}\cdot 4c^2\\
+          &=(1-D)c^2\\
+          &\equiv c^2\bmod D\\
+          &\equiv m\bmod D,
+  \end{align*}
+  so $H$ is precisely the subgroup of squares in $(\Zmod{D})^*$.
 \end{description}
 
-Finally, we need to show that for \emph{any} form $f$ of discriminant $D$, the set
+\item Finally, we need to show that for \emph{any} form $f$ of discriminant $D$, the set
 \[\{[m]: m\text{ is represented by }f(x,y),\ \gcd(m, D)=1\}\]
 is a coset of $H$ in $\ker(\chi)$. ((PUT EXERCISE 2.18 HERE)), then write $g(x,y)=ax^2+bxy+cy^2$ where $g$ is properly equivalent to $f$ and $gcd(a,D)=1$ (so that $a\in(\Zmod{D})^*$.) Then let $u,v$ be integers such that $g(u,v)=m$.
 \begin{description}
@@ -77,15 +94,18 @@ is a coset of $H$ in $\ker(\chi)$. ((PUT EXERCISE 2.18 HERE)), then write $g(x,y
        &=(au+Bv)^2+(au+Bv)v+nv^2\in H.
   \end{align*}
 \end{description}
+\end{itemize}
 
-After this lemma it is clear that the notion of genus is well-defined: To any form $f(x,y)$ we can associate some coset $aH\subset\ker(\chi)$, i.e
-\[\{[m]:\exists r,s\in\mathbf{Z}, f(r,s)=m\text{ and }\gcd(m,D)=1\}=aH\text{ for some }a\in\ker(\chi).\]
+After this lemma it is clear that the notion of genus is well-defined: To any form $f(x,y)$ we can associate some coset $aH\subset\ker(\chi)$, i.e. for some $a\in\ker(\chi)$,
+\[\left\{[m]:\exists r,s\in\mathbf{Z}, f(r,s)=m\text{ and }\gcd(m,D)=1\right\}=aH.\]
 Then a \emph{genus} of discriminant $D$ is the set of all forms of discriminant $D$ which correspond to the same coset of $\ker(\chi)$.
 
 \section{An algorithm}
 
-%Insert algorithm here
+((Insert algorithm here))
 
 It should be clear that we are not finished with the main problem in the book, even if we disregard the fact that we have 13 sections remaining. Let's look at $D=-56$ again, specifically the genus containing $x^2+14y^2$ and $2x^2+7y^2$. We know from lemma 2.24 and the consequent algorithm that \emph{every} equivalence class $1, 9, 15, 23, 25, 29$ in $(\Zmod{56})^*$ is represented by \emph{both} forms. It is impossible to partition these classes further to distinguish the two forms.
 
 Any further refinement has to happen within the individual classes. For instance, we have the statement $p=1\bmod 23\implies p$ is of the form $x^2+14y^2$ OR $p$ is of the form $2x^2+7y^2$. The prime 23 is represented by the first and not the second, but the prime 191 ($\equiv 23\bmod 56$) is represented by the second and not the first.
+
+\end{document}
