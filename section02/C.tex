@@ -108,4 +108,8 @@ It should be clear that we are not finished with the main problem in the book, e
 
 Any further refinement has to happen within the individual classes. For instance, we have the statement $p=1\bmod 23\implies p$ is of the form $x^2+14y^2$ OR $p$ is of the form $2x^2+7y^2$. The prime 23 is represented by the first and not the second, but the prime 191 ($\equiv 23\bmod 56$) is represented by the second and not the first.
 
+\section{Consequences}
+
+Using (map (lambda (x) (modulo (* x x) 40)) (filter (lambda (x) (= 1 (gcd x 40))) (iota 40))) we see that 1 and 9 are the only squares in $(\Zmod{40})^*$, so the theorem tells us that 1, 9, $1+10$, and $9+10$ are the congruence classes modulo 40 for which a prime $p$ is representable by $x^2+10y^2$.
+
 \end{document}
