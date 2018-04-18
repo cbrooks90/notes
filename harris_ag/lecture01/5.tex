@@ -1,0 +1,19 @@
+\input{../../preamble.tex}
+\begin{document}
+\section{$2n$ points in general position are the zeroes of quadratic polynomials}
+
+$\Gamma\subseteq\P^n$ is a collection of $2n$ points. Given any decomposition $\Gamma=\Gamma_1\cup\Gamma_2$ with $|\Gamma_1|=|\Gamma_2|=n$, we must have $\Gamma_1$ and $\Gamma_2$ spanning hyperplanes $\Lambda_1$ and $\Lambda_2$ if the points of $\Gamma$ are in general position. Then there are homogeneous linear polynomials vanishing on $\Lambda_1$ and $\Lambda_2$ whose product is a homogeneous quadratic polynomial vanishing on $\Lambda_1\cup\Lambda_2$.
+
+Now let $S$ be the set of all (quadratic) polynomials obtained in this way from some partition of $\Gamma$ into two sets of size $n$ and consider a point $q\in\P^n$ with the property that $F(q)=0$ for all $F\in S$. The goal is to show that $q\in\Gamma$.
+
+Choose a set $M\subseteq\Gamma$ of size $n$ such that $q$ is in the hyperplane spanned by $M$. Fix $m\in M$ and consider the hyperplane spanned by $M\setminus\{m\}$ and any point $p\in\Gamma\setminus M$; call this hyperplane $\Lambda_p$. Then $m$ and the other $n-1$ points of $\Gamma\setminus M$ span a hyperplane $\Lambda_p^\prime$. Note that this gives us a homogeneous quadratic polynomial $F_p\in S$ whose zero locus is exactly $\Lambda_p\cup\Lambda_p^\prime$.
+
+$m$ cannot be in $\Lambda_p$, otherwise we would have $n+1$ points in general position (specifically $M\cup\{p\}$) spanning a hyperplane. Since $q$ is in the span of $M$, it follows that $q$ cannot be in $\Lambda_p$. But $F_p(q)=0$, so $q\in \Lambda_p\cup\Lambda_p^\prime$. Thus we conclude that $q\in\Lambda_p^\prime$.
+
+There were $n$ choices for the point $p\in\Gamma\setminus M$; each choice yields a distinct hyperplane $\Lambda_p^\prime$ and each such hyperplane contains the points $m$ and $q$. Then
+$$
+\bigcap_{p\in\Gamma\setminus M}\Lambda_p^\prime
+$$
+is a single point, as it is the intersection of $n$ distinct hyperplanes in $\P^n$. Since $m$ and $q$ are both in this intersection, $m=q$. In particular, $q\in\Gamma$, so the zero locus of the quadratic polynomials in $S$ is exactly $\Gamma$.
+
+\end{document}

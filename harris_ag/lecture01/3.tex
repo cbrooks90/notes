@@ -1,0 +1,35 @@
+\input{../../preamble.tex}
+\begin{document}
+\section{Finite subsets of $\P^n$}
+\subsection{A single point}
+Fix a point $p=[p_0,\ldots,p_n]\in\P^n$. We want to construct, for any other point $q=[q_0,\ldots,q_n]\in\P^n$, a linear homogeneous polynomial that is zero on $p$ but nonzero on $q$. Since $p\neq q$ in $\P^n$, the matrix
+\[
+\begin{bmatrix}
+    p_0 & p_1 & \dots  & p_n \\
+    q_0 & q_1 & \dots  & q_n
+\end{bmatrix}
+\]
+has rank 2. This means we can find $i, j$ such that the matrix
+\[
+\begin{bmatrix}
+    p_i & p_j \\
+    q_i & q_j
+\end{bmatrix}
+\]
+has rank 2. Then the polynomial $-p_jX_i + p_iX_j$ vanishes on $p$ but not on $q$.
+\subsection{Multiple points}
+If we are given a finite collection of points $\{p_i\}_{i=1}^d\subset\P^n$, then for any other point $q\in\P^n$ we can construct linear homogeneous polynomials $F_i$ with $F_i$ vanishing on $p_i$ but not vanishing on $q$ using the previous method. Then the product of these polynomials will be a homogeneous polynomial of degree $d$ which vanishes on $\{p_i\}$ and not on $q$.
+
+Why do we care about these polynomials not vanishing at some arbitrary point $q$? The goal is to describe a finite set of points $\{p_i\}_{i=1}^d\subset\P^n$ as the common zero locus of some set of polynomials; if there is some point for which even \emph{one} of the polynomials does not vanish, that point is not described by the variety.
+
+If we didn't care about extra points in our zero locus, then to describe a finite set of points $\{p_i\}_{i=1}^d$ I could just provide the zero polynomial and be done; it certainly vanishes at the points we care about, but also a lot of others. To ensure that we get the points $\{p_i\}_{i=1}^d$ and no others, consider this process: Do the above construction repeatedly as $q$ varies among every possible point \emph{not} in the set. The set of points at which \emph{every} such polynomial vanishes is exactly $\{p_i\}_{i=1}^d$. This is extreme overkill as we certainly do not need so many polynomials, but it gets the job done.
+
+\subsection{Degree}
+Notice that we described a set of $d$ points as a collection of polynomials of degree $d$. If all the points lie on a projective line, we cannot do any better. Denote by $\Gamma$ the set $\{p_i\}_{i=1}^d$, and let $\varphi$ be the quotient map $V\to\P^n$. If $\Gamma$ lies on a projective line, there exists a 2-dimensional vector space $W\subseteq V$ such that $\Gamma\subset\varphi(W)\subseteq\P^n$. Let $\{u, v\}$ be a basis for $W$ with the property that $\varphi(u)$ and $\varphi(v)$ are not in $\Gamma$.
+
+Now let $F(X_0,\ldots,X_n)$ be \emph{any} homogeneous polynomial of degree $< d$ which vanishes on $\Gamma$. Then $F(\lambda u + v)$ and $F(u + \lambda v)$ are both single variable polynomials in $\lambda$ having degree $< d$ and $d$ roots, so they both must be zero for any value of $\lambda$. Thus $F(w)=0$ for any point on the projective line $\varphi(W)$.
+
+To elaborate on the last sentence, consider $\lambda_1 u + \lambda_2 v\in W$ with coefficients not both zero. Assume $\lambda_1\neq 0$; the case where instead $\lambda_2\neq 0$ is analagous. Since $F$ is homogeneous, $F(\lambda_1 u + \lambda_2 v)= 0\iff F(u+\frac{\lambda_2}{\lambda_1}v)=0$ and so the previous paragraph applies with $\lambda = \frac{\lambda_2}{\lambda_1}$.
+
+
+\end{document}
