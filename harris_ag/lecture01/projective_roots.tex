@@ -1,0 +1,9 @@
+\input{../../preamble.tex}
+\begin{document}
+\section{Zeroes of homogeneous polynomials}
+A homogeneous polynomial $F\in K[X_0,\ldots,X_n]$ is not a function on $\PP^n$. Letting $\varphi$ be the quotient map $K^{n+1}\to\PP^n$, we can have $v_1 = \lambda v_2\in K^*$ so that $\varphi(v_1)=\varphi(v_2)\in\PP^n$ but $F(v_1)\neq F(v_2)$.
+
+On the other hand, the zero set of $F$ on $\PP^n$ is well-defined since $F(v_1)=\lambda^d F(v_2)$ where $d$ is the degree of $F$. Furthermore, a homogeneous polynomial $F\in K[X_0, X_1]$ of degree $d$ has at most $d$ zeroes in $\PP^1$, as we might expect.
+
+To show this, we need count zeroes in an affine chart, but first we see if there are any zeroes ``at infinity''. In other words, write $F(X,Y) = X^nG(X,Y)$ where $G(0,1)\neq 0$. $n$ is the multiplicity of the root of $F$ at $[0:1]$ (which could be 0). Now all zeroes of $G$ are of the form $[a:b]=[1:\frac{b}{a}]$, so the zeroes of $G(X,Y)$ are in bijection with the zeroes of $G(1,Y)$. But this is an ordinary polynomial of degree $d-n$ in $K[Y]$ so we know it has at most $d-n$ zeroes, from which we conclude that $F$ has at most $n+(d-n)=d$ zeroes.
+\end{document}
