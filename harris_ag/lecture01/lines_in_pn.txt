@@ -1,0 +1,24 @@
+What is a line in Pn?
+
+By definition, for a field K we have a quotient map \phi:K^n+1\to Pn. A \emph{line} in Pn is \phi(V) where V is a 2-dimensional subspace of K^n+1.
+
+As a sanity check, we should make sure that there is a line passing through any two distinct points in Pn.
+
+Take $p_1, p_2\in Pn$. Then we have $v_1, v_2\in K^n+1$ with $\phi(v_1)=p_1$ and $\phi(v_2)=p_2$. Then $\phi(\span(v_1, v_2))$ is a line passing through $p_1$ and $p_2$.
+
+For example, take $[1, 0, 3, 0]$ and $[4, 1, 2, 5]$ in $P^3$. We want to look at $\phi\span((1, 0, 3, 0), (4, 1, 2, 5))$. This is the space
+\[
+[a+4b, b, 3a+2b, 5b]\subset P^3
+\]
+with $a, b\in K$ not both zero. How is this a line? If we think in terms of dimension, this is okay since we can intuitively think of $\phi$ ``squashing'' this two-parameter space down to a one-dimensional object. But we can see it more explicitly.
+
+If $b\neq 0$, the points take the form
+\[
+[\frac{a}{b}+4, 1, \frac{3a}{b}+2, 5\]=[\lambda+4, 1, 3\lambda+2, 5]
+\]
+and if $b = 0$, the points take the form (note $a$ cannot be zero in this case):
+\[
+[a, 0, 3a, 0]=[1, 0, 3, 0].
+\]
+
+This gives us a one-parameter family and some extra point. You should convince yourself that this extra point makes sense---not just because it was one of the two points we started with, but because $(\lambda+4, 1, 3\lambda+2, 5)$ is ``close'' to $(\lambda, 0, 3\lambda, 0)$ for certain values of $\lambda$ (imagine $K=\mathbb{R}$ and let $\lambda$ be really big). Let's be more precise.
